@@ -44,7 +44,8 @@ class _WCategoryParentState extends State<WCategoryParent> {
                 child: SvgPicture.asset(AppAssets.close)),
           ),
           const WDivider(),
-          ListView.builder(
+          ListView.separated(
+            separatorBuilder: (context, index) => const WDivider(),
             shrinkWrap: true,
             itemCount: widget.state.categories.length,
             itemBuilder: (context, index) {

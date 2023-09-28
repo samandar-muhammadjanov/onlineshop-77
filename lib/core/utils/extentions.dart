@@ -40,7 +40,7 @@ extension PhoneNumberFormatting on String {
     if (cleanedNumber.length < 9) {
       return this; // Return the original string if it doesn't contain at least 9 digits.
     }
-    return '+${cleanedNumber.substring(0, 3)} ${cleanedNumber.substring(3, 5)} ${cleanedNumber.substring(5, 8)} ${cleanedNumber.substring(8)}';
+    return '+${cleanedNumber.substring(0, 3)} ${cleanedNumber.substring(3, 5)} ${cleanedNumber.substring(5, 8)} ${cleanedNumber.substring(8, 10)} ${cleanedNumber.substring(10, 12)}';
   }
 }
 

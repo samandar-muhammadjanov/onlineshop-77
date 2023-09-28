@@ -1,9 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/features/auth/presentation/login_screen.dart';
 import 'package:onlineshop_77/features/auth/presentation/registration_screen.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_custom_button.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_appbar_language_item.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_profile_body_details.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
@@ -15,15 +18,14 @@ class WProfileUnAuth extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppConstants.kWhiteColor,
       appBar: AppBar(
-        elevation: 0.4,
-        title: Text(
-          LocaleKeys.profile.tr(),
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+        leadingWidth: 92,
+        elevation: 0.5,
         centerTitle: true,
+        leading: const WAppBarLanguageItem(),
+        title: SvgPicture.asset(
+          AppAssets.logo,
+          width: 77,
+        ),
       ),
       body: Center(
         child: Padding(

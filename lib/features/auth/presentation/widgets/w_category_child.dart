@@ -77,7 +77,8 @@ class _WCategoryChildState extends State<WCategoryChild> {
         ),
         const WDivider(),
         AnimationLimiter(
-          child: ListView.builder(
+          child: ListView.separated(
+            separatorBuilder: (context, index) => const WDivider(),
             shrinkWrap: true,
             itemCount: widget.state.categories[widget.categoryId].childs.length,
             itemBuilder: (context, index) {

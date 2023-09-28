@@ -26,6 +26,7 @@ class WProductByCategory extends StatelessWidget {
     SizeConfig().init(context);
 
     return ListView(
+      padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
       physics: const BouncingScrollPhysics(),
       children: [
         Row(
@@ -104,7 +105,7 @@ class WProductByCategory extends StatelessWidget {
                 },
               );
             }
-            return SizedBox();
+            return const SizedBox();
           },
         )
       ],

@@ -84,7 +84,8 @@ class CodegenLoader extends AssetLoader{
   "showPhone": "Показать телефон",
   "seller": "Продавец",
   "location": "Местоположение",
-  "unshowPhone": "Скрыть телефон"
+  "unshowPhone": "Скрыть телефон",
+  "aboutApp": "О приложении"
 };
 static const Map<String,dynamic> uz = {
   "popularProducts": "Ommabop mahsulotlar",
@@ -156,7 +157,8 @@ static const Map<String,dynamic> uz = {
   "showPhone": "Telefonni ko'rsatish",
   "seller": "Sotuvchi",
   "location": "Joylashgan joy",
-  "unshowPhone": "Telefonni yashirish"
+  "unshowPhone": "Telefonni yashirish",
+  "aboutApp": "Ilova haqida"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ru": ru, "uz": uz};
 }

@@ -34,6 +34,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
         WTextField(
           onSaved: (value) {
             widget.getLogin(value);
+            widget.formKey.currentState!.validate();
           },
           title: LocaleKeys.login.tr(),
           hint: LocaleKeys.enterLogin.tr(),
@@ -49,6 +50,7 @@ class _LoginFormWidgetState extends State<LoginFormWidget> {
           keyboardType: TextInputType.visiblePassword,
           onSaved: (value) {
             widget.getPassword(value);
+            widget.formKey.currentState!.validate();
           },
           obscureText: isPasswordVisible,
           title: LocaleKeys.password.tr(),

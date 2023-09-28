@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineshop_77/features/auth/presentation/registration_screen.dart';
+import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
 
 import '../../../../assets/constants/constants.dart';
 import '../../../../generated/locale_keys.g.dart';
@@ -23,9 +24,18 @@ class WLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        WCustomButton(
-          text: LocaleKeys.logIn.tr(),
+        WElevatedButton(
+          color: login.isEmpty || password.isEmpty
+              ? AppConstants.kGreyColor
+              : null,
           onPressed: onPressed,
+          child: Text(
+            LocaleKeys.logIn.tr(),
+            style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppConstants.kWhiteColor),
+          ),
         ),
         const WGap(height: 8),
         Row(

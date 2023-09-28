@@ -68,8 +68,12 @@ class _WCategoryModalPopupState extends State<WCategoryModalPopup> {
                   );
                 }
               }
-              return const Center(
-                child: CircularProgressIndicator(),
+              return const SizedBox(
+                height: 300,
+                width: double.maxFinite,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
             },
           ),

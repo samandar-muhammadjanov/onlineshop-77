@@ -26,8 +26,32 @@ class WCompleteSearchResult extends StatelessWidget {
             builder: (context, resultState) {
               if (resultState is SearchCompleteResultError) {
                 return Text(resultState.error);
-              }
-              if (resultState is SearchCompleteResultLoaded) {
+              } else if (resultState is SearchCompleteResultLoaded) {
+                if (resultState.result.isEmpty) {
+                  return Container(
+                    padding: const EdgeInsets.all(20),
+                    width: double.maxFinite,
+                    decoration:
+                        const BoxDecoration(color: AppConstants.kWhiteColor),
+                    child: Column(
+                      children: [
+                        SvgPicture.asset(AppAssets.emptySearch),
+                        const Text(
+                          "Ничего не найдено",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
+                        ),
+                        const Text(
+                          "Упс! Мы не смогли найти ни одного подходящего результата по вашему запросу",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: AppConstants.kGreyTextColor),
+                        )
+                      ],
+                    ),
+                  );
+                }
                 return Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 10),

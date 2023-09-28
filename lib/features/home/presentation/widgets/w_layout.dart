@@ -29,12 +29,20 @@ class WLayout extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(LocaleKeys.allPosts.tr()),
-                  SvgPicture.asset(AppAssets.chevronDown)
-                ],
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: AppConstants.kWhiteColor,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(LocaleKeys.allPosts.tr()),
+                    SvgPicture.asset(AppAssets.chevronDown)
+                  ],
+                ),
               ),
             ),
             BlocBuilder<LayoutBloc, LayoutState>(

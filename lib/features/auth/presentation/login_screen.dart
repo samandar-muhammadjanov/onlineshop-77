@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -47,24 +49,19 @@ class _LoginScreenState extends State<LoginScreen> {
       backgroundColor: AppConstants.kWhiteColor,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        elevation: 0.5,
-        title: Text(
-          LocaleKeys.logIn.tr(),
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-        centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
-          icon: SvgPicture.asset(AppAssets.arrowLeftSm),
+          icon: SvgPicture.asset(
+            AppAssets.arrowLeftSm,
+            color: AppConstants.kBlackColor,
+          ),
         ),
       ),
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: EdgeInsets.fromLTRB(
+              20.0, 20, 20, MediaQuery.of(context).viewPadding.bottom + 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -41,6 +41,9 @@ class _WSearchPanelState extends State<WSearchPanel> {
         },
         onFieldSubmitted: (newValue) {
           context.read<SearchOnchangedBloc>().add(OnUnchangeEvent());
+          context.read<SearchBloc>().add(
+                GetSearchProductsEvent(controller.text),
+              );
         },
         decoration: InputDecoration(
           prefixIcon: IconButton(

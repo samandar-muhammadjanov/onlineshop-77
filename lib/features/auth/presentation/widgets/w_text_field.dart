@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '/assets/constants/constants.dart';
 
-class WTextField extends StatelessWidget {
+class WTextField extends StatefulWidget {
   const WTextField(
       {super.key,
       required this.title,
@@ -31,13 +31,20 @@ class WTextField extends StatelessWidget {
   final bool? readOnly;
   final ValueChanged? onFieldSubmitted;
   final ValueChanged? onSaved;
+
+  @override
+  State<WTextField> createState() => _WTextFieldState();
+}
+
+class _WTextFieldState extends State<WTextField> {
+  bool isFocused = false;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          widget.title,
           style: const TextStyle(
             color: AppConstants.kDarkGreyColor,
             fontWeight: FontWeight.w500,
@@ -45,26 +52,44 @@ class WTextField extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         TextFormField(
-          onSaved: onSaved,
-          readOnly: readOnly ?? false,
-          obscureText: obscureText ?? false,
-          controller: controller,
-          onFieldSubmitted: onFieldSubmitted,
-          validator: validator,
-          keyboardType: keyboardType,
-          inputFormatters: inputFormatters,
+          onSaved: widget.onSaved,
+          readOnly: widget.readOnly ?? false,
+          obscureText: widget.obscureText ?? false,
+          controller: widget.controller,
+          onFieldSubmitted: (value) {
+            widget.onFieldSubmitted;
+            setState(() {
+              isFocused = false;
+            });
+          },
+          validator: widget.validator,
+          keyboardType: widget.keyboardType,
+          inputFormatters: widget.inputFormatters,
           style: const TextStyle(fontSize: 14),
+          onTap: () => setState(() {
+            isFocused = true;
+          }),
+          onTapOutside: (event) {
+            FocusScope.of(context).unfocus();
+            setState(() {
+              isFocused = false;
+            });
+          },
           decoration: InputDecoration(
             contentPadding: const EdgeInsets.all(12),
-            hintText: hint,
+            hintText: widget.hint,
             prefixIconConstraints: BoxConstraints.tight(
               const Size(55, 50),
             ),
-            prefixIcon: prefix,
+            prefixIcon: widget.prefix,
             hintStyle: const TextStyle(color: AppConstants.kHintColor),
-            filled: true,
+            filled: !isFocused,
             fillColor: AppConstants.kBackgroundColor,
-            suffixIcon: suffix,
+            suffixIcon: widget.suffix,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: const BorderSide(color: AppConstants.kPrimaryColor),
+            ),
             errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.red),
               borderRadius: BorderRadius.circular(8),

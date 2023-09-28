@@ -116,7 +116,7 @@ class WDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Divider(
       height: 0,
-      thickness: 1.5,
+      thickness: 1,
     );
   }
 }

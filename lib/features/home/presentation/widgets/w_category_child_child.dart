@@ -40,106 +40,113 @@ class _WCategoryChildChildState extends State<WCategoryChildChild> {
     });
   }
 
+  String categoryTitle = '';
   @override
   Widget build(BuildContext context) {
     final title = widget.widget.state.categories[widget.widget.categoryIndex]
         .childs[widget.categoryIndex].name;
     if (!isParentCategory) {
-      return Column(
-        children: [
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () => widget.parentRoute(false, widget.categoryIndex),
-                child: SvgPicture.asset(AppAssets.arrowLeft),
-              ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text(
-                widget.title,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
+      return Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: () => widget.parentRoute(false, widget.categoryIndex),
+                  child: SvgPicture.asset(AppAssets.arrowLeft),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 24.5,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: AppConstants.kWhiteColor,
-              borderRadius: BorderRadius.circular(12),
+                const SizedBox(
+                  width: 8,
+                ),
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
             ),
-            child: AnimationLimiter(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  GestureDetector(
-                    onTap: () => widget.childRoute(false, widget.categoryIndex),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(AppAssets.chevronLeft),
-                        Text(
-                          title,
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w700),
-                        ),
-                      ],
+            const SizedBox(
+              height: 24.5,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: AppConstants.kWhiteColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: AnimationLimiter(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 12,
                     ),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: widget.childChild.length,
-                    itemBuilder: (context, index) {
-                      final item = widget.childChild[index];
-                      if (item["ads_count"] == 0) {
-                        return const SizedBox(
-                          height: 5,
-                        );
-                      }
-                      return AnimationConfiguration.staggeredList(
-                        position: index,
-                        child: FadeInAnimation(
-                          duration: const Duration(milliseconds: 500),
-                          child: ListTile(
-                            onTap: () {
-                              _routeToChild(true, item["id"]);
-                              context.read<ProductByCategoryBloc>().add(
-                                    GetProductsByCategoryEvent(
-                                      item["id"].toString(),
-                                    ),
-                                  );
-                            },
-                            title: Text(
-                              item["name"],
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w500,
+                    GestureDetector(
+                      onTap: () =>
+                          widget.childRoute(false, widget.categoryIndex),
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(AppAssets.chevronLeft),
+                          Text(
+                            title,
+                            style: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: widget.childChild.length,
+                      itemBuilder: (context, index) {
+                        final item = widget.childChild[index];
+                        if (item["ads_count"] == 0) {
+                          return const SizedBox(
+                            height: 5,
+                          );
+                        }
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          child: FadeInAnimation(
+                            duration: const Duration(milliseconds: 500),
+                            child: ListTile(
+                              onTap: () {
+                                categoryTitle = item["name"];
+                                setState(() {});
+                                _routeToChild(true, item["id"]);
+                                context.read<ProductByCategoryBloc>().add(
+                                      GetProductsByCategoryEvent(
+                                        item["id"].toString(),
+                                      ),
+                                    );
+                              },
+                              title: Text(
+                                item["name"],
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              trailing: SvgPicture.asset(
+                                AppAssets.chevronRight,
                               ),
                             ),
-                            trailing: SvgPicture.asset(
-                              AppAssets.chevronRight,
-                            ),
                           ),
-                        ),
-                      );
-                    },
-                  ),
-                ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     } else {
       return WProductByCategory(
-        title: title,
+        title: categoryTitle,
         childRoute: _routeToChild,
         categoryIndex: categoryIndex,
       );

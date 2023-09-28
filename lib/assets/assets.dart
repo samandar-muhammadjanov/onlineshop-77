@@ -43,4 +43,5 @@ class AppAssets {
   static const String imageAdd = "assets/icons/image-add.svg";
   static const String canselwishlist = "assets/icons/canselwishlist.svg";
   static const String download = "assets/icons/download.svg";
+  static const String emptySearch = "assets/icons/empty.svg";
 }
