@@ -10,7 +10,8 @@ class WCustomRadio extends StatelessWidget {
   Widget build(BuildContext context) {
     return FractionallySizedBox(
       child: AnimatedContainer(
-        height: 20,
+        height: 25,
+        alignment: Alignment.center,
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           shape: BoxShape.circle,

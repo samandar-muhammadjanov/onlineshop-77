@@ -69,5 +69,7 @@
     "seller": "Sotuvchi",
     "location": "Joylashgan joy",
     "unshowPhone": "Telefonni yashirish",
-    "aboutApp" : "Ilova haqida"
+    "aboutApp": "Ilova haqida",
+    "logout": "Chiqish",
+    "filter" : "Filtr"
 }

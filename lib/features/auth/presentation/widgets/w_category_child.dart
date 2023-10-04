@@ -6,7 +6,7 @@ import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/categories/categories_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/widgets/w_language_item.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_selected_item.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_language_modal_popup.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 

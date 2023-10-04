@@ -36,7 +36,7 @@ class WPDAboutSeller extends StatelessWidget {
                 : CircleAvatar(
                     radius: 20,
                     backgroundImage: NetworkImage(
-                      "https://backendmaster.pythonanywhere.com${seller.profilePhoto}",
+                      "${AppConstants.siteurl}${seller.profilePhoto}",
                     ),
                   ),
             title: Text(
@@ -53,6 +53,7 @@ class WPDAboutSeller extends StatelessWidget {
           ),
           ShowPhoneNumber(
             phoneNumber: seller.phoneNumber,
+            sellerId: seller.id,
           )
         ],
       ),

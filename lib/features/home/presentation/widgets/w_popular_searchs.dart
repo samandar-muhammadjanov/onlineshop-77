@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/search/search_bloc.dart';
+import 'package:onlineshop_77/features/home/presentation/bloc/searchsys/saerchsys_bloc.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_popular_searchs_shimmer.dart';
 
 import '../../../../assets/assets.dart';
@@ -49,6 +50,12 @@ class WPopularSearchs extends StatelessWidget {
                     final item = state.popularSearchs[index];
                     return ListTile(
                       onTap: () {
+                        context
+                            .read<SearchsysBloc>()
+                            .add(OnSearchResultEvent());
+                        context
+                            .read<SearchsysBloc>()
+                            .add(OnPopularSearchEvent(item.searchTerm));
                         context
                             .read<SearchBloc>()
                             .add(GetSearchProductsEvent(item.searchTerm));

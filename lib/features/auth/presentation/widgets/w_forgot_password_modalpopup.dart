@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_modal_sheet_scroller.dart';
 
 class ForgotPasswordModalPopup extends StatelessWidget {
   const ForgotPasswordModalPopup({
@@ -15,13 +16,7 @@ class ForgotPasswordModalPopup extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Container(
-            height: 5,
-            width: 36,
-            decoration: BoxDecoration(
-                color: const Color(0xffD5D8DB),
-                borderRadius: BorderRadius.circular(10)),
-          ),
+          const WModalSheetScroller(),
           const SizedBox(
             height: 8,
           ),

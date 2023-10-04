@@ -108,21 +108,50 @@ class _WImportantInformationsState extends State<WImportantInformations> {
           const SizedBox(
             height: 16,
           ),
-          WTextField(
-            validator: (value) {
-              if (value!.isEmpty) {
-                return "*required";
-              }
-              return null;
-            },
-            onFieldSubmitted: (value) {
-              description = value;
-              widget.getImportantIInfo(productName, categoryId, description);
-              setState(() {});
-            },
-            title: LocaleKeys.description.tr(),
-            maxLines: 5,
-            hint: LocaleKeys.enterDesciption.tr(),
+          Text(
+            LocaleKeys.description.tr(),
+            style: const TextStyle(
+              color: AppConstants.kDarkGreyColor,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            padding: const EdgeInsets.only(bottom: 5),
+            decoration: BoxDecoration(
+              color: AppConstants.kBackgroundColor,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: TextFormField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "*required";
+                }
+                return null;
+              },
+              style: const TextStyle(fontSize: 14),
+              onTapOutside: (event) {
+                FocusScope.of(context).unfocus();
+              },
+              textCapitalization: TextCapitalization.words,
+              maxLines: 5,
+              maxLength: 1000,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.all(12),
+                hintText: LocaleKeys.enterDesciption.tr(),
+                hintStyle: const TextStyle(color: AppConstants.kHintColor),
+                fillColor: AppConstants.kBackgroundColor,
+                filled: true,
+                errorBorder: OutlineInputBorder(
+                  borderSide: const BorderSide(color: Colors.red),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+            ),
           )
         ],
       ),

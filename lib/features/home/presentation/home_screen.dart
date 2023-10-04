@@ -16,7 +16,10 @@ class HomeScreen extends StatelessWidget {
       },
       child: ListView(
         physics: const BouncingScrollPhysics(),
-        children: const [WPopularProducts(), WPopularCategories()],
+        children: const [
+          WPopularProducts(),
+          WPopularCategories(),
+        ],
       ),
     );
   }

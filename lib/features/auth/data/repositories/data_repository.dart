@@ -68,7 +68,7 @@ class DataRepository {
           context, Dashboard.routeName, (route) => false);
     } else {
       Usecases.showSnackBar(
-          context, body["non_field_errors"][0], AppAssets.errorInfo);
+          context, body["non_field_errors"].toString(), AppAssets.errorInfo);
     }
   }
 }

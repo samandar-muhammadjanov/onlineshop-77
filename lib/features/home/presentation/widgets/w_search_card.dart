@@ -15,7 +15,6 @@ class WSearchCard extends StatelessWidget {
     SizeConfig().init(context);
     return AnimationLimiter(
       child: GridView.builder(
-        padding: const EdgeInsets.all(16),
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: state.products.results.length,

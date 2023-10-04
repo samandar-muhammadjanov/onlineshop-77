@@ -10,7 +10,6 @@ class WHorizontalProductsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimationLimiter(
       child: ListView.separated(
-        padding: const EdgeInsets.all(16),
         separatorBuilder: (context, index) => const SizedBox(
           height: 10,
         ),

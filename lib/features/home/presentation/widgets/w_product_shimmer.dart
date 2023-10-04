@@ -53,18 +53,27 @@ class WProductShimmer extends StatelessWidget {
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
                   child: Container(
+                    height: 15,
+                    width: 60,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                         color: AppConstants.kWhiteColor,
                         borderRadius: BorderRadius.circular(6)),
-                    child: const Text(
-                      "г. Ташкент",
-                      style: TextStyle(
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Container(
+                    height: 15,
+                    width: double.maxFinite,
+                    decoration: BoxDecoration(
                         color: AppConstants.kWhiteColor,
-                        fontSize: 10,
-                      ),
-                    ),
+                        borderRadius: BorderRadius.circular(6)),
                   ),
                 ),
                 const SizedBox(
@@ -73,52 +82,27 @@ class WProductShimmer extends StatelessWidget {
                 Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
-                  child: const Text(
-                    "Оригинальные кроссовки Nike Air Max 97",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontWeight: FontWeight.w600),
-                  ),
-                ),
-                Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: const Text(
-                    "Вчера, 19:20",
-                    style: TextStyle(
-                        fontSize: 10, color: AppConstants.kWhiteColor),
+                  child: Container(
+                    height: 15,
+                    width: 50,
+                    decoration: BoxDecoration(
+                        color: AppConstants.kWhiteColor,
+                        borderRadius: BorderRadius.circular(6)),
                   ),
                 ),
                 const SizedBox(
                   height: 8,
                 ),
                 Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: RichText(
-                    text: const TextSpan(
-                      style: TextStyle(color: AppConstants.kWhiteColor),
-                      children: [
-                        TextSpan(
-                          text: "4 820 000  ",
-                          style: TextStyle(
-                            color: AppConstants.kWhiteColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        TextSpan(
-                          text: "UZS",
-                          style: TextStyle(
-                            color: AppConstants.kWhiteColor,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
+                    baseColor: Colors.grey[300]!,
+                    highlightColor: Colors.grey[100]!,
+                    child: Container(
+                      height: 15,
+                      width: double.maxFinite,
+                      decoration: BoxDecoration(
+                          color: AppConstants.kWhiteColor,
+                          borderRadius: BorderRadius.circular(6)),
+                    )),
                 const SizedBox(
                   height: 8,
                 )

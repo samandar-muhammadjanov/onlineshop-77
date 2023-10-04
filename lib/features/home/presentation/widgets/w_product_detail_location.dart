@@ -5,6 +5,8 @@ import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/features/home/data/model/m_product_detail.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart' as placemark;
 
 class WPDLocation extends StatefulWidget {
   const WPDLocation({
@@ -18,8 +20,10 @@ class WPDLocation extends StatefulWidget {
 }
 
 class _WPDLocationState extends State<WPDLocation> {
+  placemark.Polyline? lastPlaceMark;
   @override
   Widget build(BuildContext context) {
+    final address = widget.address;
     return Container(
       decoration: const BoxDecoration(color: AppConstants.kWhiteColor),
       child: Column(
@@ -54,11 +58,26 @@ class _WPDLocationState extends State<WPDLocation> {
             height: 18,
           ),
           Container(
-            height: 180,
-            color: AppConstants.kDarkGreyColor,
-          )
+              height: 180,
+              color: AppConstants.kDarkGreyColor,
+              child: YandexMap(
+                onMapCreated: (controller) {
+                  _onMapCreated(controller, address.lat, address.long);
+                },
+              ))
         ],
       ),
     );
   }
+}
+
+void _onMapCreated(YandexMapController yandexMapController, lat, lng) {
+  yandexMapController.moveCamera(
+    placemark.CameraUpdate.newCameraPosition(
+      CameraPosition(
+        target: placemark.Point(latitude: lat, longitude: lng),
+        zoom: 14,
+      ),
+    ),
+  );
 }

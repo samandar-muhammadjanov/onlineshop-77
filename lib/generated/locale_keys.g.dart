@@ -72,5 +72,7 @@ abstract class  LocaleKeys {
   static const location = 'location';
   static const unshowPhone = 'unshowPhone';
   static const aboutApp = 'aboutApp';
+  static const logout = 'logout';
+  static const filter = 'filter';
 
 }

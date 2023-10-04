@@ -28,4 +28,6 @@ class AppConstants {
   static const String REFRESH_TOKEN = "accounts/token/refresh/";
   static const String SEARCH = "store/search/complete/?q=";
   static const String POPULAR_SEARCHS = "store/search/populars/";
+  static const String siteurl = "https://backendmaster.pythonanywhere.com";
+  static const String REGION = "common/regions-with-districts/";
 }

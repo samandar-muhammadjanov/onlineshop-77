@@ -15,7 +15,6 @@ class WProductCards extends StatelessWidget {
     SizeConfig().init(context);
     return BlocBuilder<ProductBloc, ProductState>(
       builder: (context, state) {
-        print(state);
         if (state is ProductInitial) {
           return const WProductShimmer();
         } else if (state is ProductLoading) {

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/categories/categories_bloc.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_modal_sheet_scroller.dart';
 
 import '../registration_screen.dart';
 import 'w_category_child.dart';
@@ -34,14 +35,7 @@ class _WCategoryModalPopupState extends State<WCategoryModalPopup> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 36,
-          height: 5,
-          decoration: BoxDecoration(
-            color: AppConstants.kGreyColor,
-            borderRadius: BorderRadius.circular(5),
-          ),
-        ),
+        const WModalSheetScroller(),
         const Gap(),
         Container(
           width: double.maxFinite,

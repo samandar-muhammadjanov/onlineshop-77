@@ -6,8 +6,10 @@ import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/core/storage/store_keys.dart';
 import 'package:onlineshop_77/core/storage/storage_repository.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
-import 'package:onlineshop_77/features/home/presentation/widgets/w_language_item.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_selected_item.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_modal_sheet_scroller.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
+import 'package:restart_app/restart_app.dart';
 
 class WLanguageModalPopup extends StatefulWidget {
   const WLanguageModalPopup({super.key});
@@ -30,14 +32,7 @@ class _WLanguageModalPopupState extends State<WLanguageModalPopup> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          width: 36,
-          height: 5,
-          decoration: BoxDecoration(
-            color: AppConstants.kGreyColor,
-            borderRadius: BorderRadius.circular(5),
-          ),
-        ),
+        const WModalSheetScroller(),
         const SizedBox(
           height: 10,
         ),
@@ -89,6 +84,7 @@ class _WLanguageModalPopupState extends State<WLanguageModalPopup> {
                     context.setLocale(Locale(groupValue));
                     StorageRepository.putString(StoreKeys.language, groupValue);
                     Navigator.pop(context);
+                    Restart.restartApp();
                   },
                   child: Text(
                     LocaleKeys.select.tr(),
@@ -116,7 +112,6 @@ class WDivider extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Divider(
       height: 0,
-      thickness: 1,
     );
   }
 }

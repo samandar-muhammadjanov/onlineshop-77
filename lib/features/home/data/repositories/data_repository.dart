@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:onlineshop_77/core/storage/store_keys.dart';
 import 'package:onlineshop_77/core/storage/storage_repository.dart';
 import 'package:onlineshop_77/features/home/data/model/m_my_products.dart';
+import 'package:onlineshop_77/features/home/data/model/m_regions.dart';
 import 'package:onlineshop_77/features/home/data/model/m_search_result.dart';
 import '../model/m_categories.dart';
 import '../model/m_popular_search.dart';
@@ -183,6 +184,18 @@ class HomeRepository {
           ),
         ),
       );
+    }
+  }
+
+  static Future<List<Regions>> getRegions() async {
+    final response =
+        await http.get(Uri.parse(AppConstants.BASE_URL + AppConstants.REGION));
+
+    if (response.statusCode == 200) {
+      List<Regions> regions = regionsFromJson(utf8.decode(response.bodyBytes));
+      return regions;
+    } else {
+      return throw Exception(response.body);
     }
   }
 }

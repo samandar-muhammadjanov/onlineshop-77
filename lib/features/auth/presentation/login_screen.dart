@@ -6,11 +6,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/features/auth/data/repositories/data_repository.dart';
+import 'package:onlineshop_77/features/auth/presentation/registration_screen.dart';
+import 'package:onlineshop_77/features/auth/presentation/widgets/w_custom_button.dart';
+import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
+import 'package:onlineshop_77/features/auth/presentation/widgets/w_gap.dart';
+import 'package:onlineshop_77/features/auth/presentation/widgets/w_text_field.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 import 'widgets/w_forgot_password.dart';
-import 'widgets/w_login.dart';
-import 'widgets/w_login_form.dart';
 import 'widgets/w_login_intro.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -22,24 +25,19 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  Map<String, dynamic> userData = {"login": "", "password": ""};
+  final TextEditingController loginController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  bool isValid = false;
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      DataRepository.login(userData["login"], userData["password"], context);
+      DataRepository.login(
+          loginController.text, passwordController.text, context);
     }
   }
 
-  void _getLogin(
-    String login,
-  ) {
-    userData["login"] = login;
-    setState(() {});
-  }
-
-  void _getPassword(String password) {
-    userData["password"] = password;
+  bool isPasswordVisible = false;
+  void showPassword() {
+    isPasswordVisible = !isPasswordVisible;
     setState(() {});
   }
 
@@ -66,18 +64,73 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               LoginIntroductionWidget(text: LocaleKeys.welcome.tr()),
-              LoginFormWidget(
-                formKey: _formKey,
-                getLogin: _getLogin,
-                getPassword: _getPassword,
+              WTextField(
+                controller: loginController,
+                title: LocaleKeys.login.tr(),
+                hint: LocaleKeys.enterLogin.tr(),
+                onFieldSubmitted: (value) => _submit(),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return '*reuqired';
+                  }
+                  return null;
+                },
+              ),
+              const WGap(height: 16),
+              WTextField(
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: isPasswordVisible,
+                controller: passwordController,
+                title: LocaleKeys.password.tr(),
+                hint: LocaleKeys.enterPassword.tr(),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return '*reuqired';
+                  }
+                  return null;
+                },
+                suffix: IconButton(
+                  onPressed: showPassword,
+                  icon: SvgPicture.asset(
+                    isPasswordVisible ? AppAssets.eyeOpen : AppAssets.eyeClosed,
+                    color: AppConstants.kDarkGreyColor,
+                  ),
+                ),
               ),
               const WForgotPassword(),
               const Spacer(),
-              WLogin(
-                formKey: _formKey,
-                login: userData["login"],
-                password: userData["password"],
+              WElevatedButton(
+                color: isValid
+                    ? AppConstants.kPrimaryColor
+                    : AppConstants.kGreyColor,
                 onPressed: _submit,
+                child: Text(
+                  LocaleKeys.logIn.tr(),
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: AppConstants.kBlackColor),
+                ),
+              ),
+              const WGap(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Divider(),
+                  Text(
+                    LocaleKeys.wannabeSeller.tr(),
+                    style: const TextStyle(
+                        color: AppConstants.kDarkGreyColor, fontSize: 12),
+                  ),
+                  const Divider(),
+                ],
+              ),
+              const WGap(height: 8),
+              WCustomButton(
+                text: LocaleKeys.signIn.tr(),
+                onPressed: () => Navigator.pushReplacementNamed(
+                    context, RegistrationScreen.routeName),
+                hasBorder: true,
               )
             ],
           ),

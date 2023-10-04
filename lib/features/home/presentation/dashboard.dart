@@ -1,3 +1,7 @@
+// ignore_for_file: deprecated_member_use
+
+import 'dart:ui';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,7 +12,6 @@ import 'package:onlineshop_77/features/home/presentation/favorites_screen.dart';
 import 'package:onlineshop_77/features/home/presentation/home_screen.dart';
 import 'package:onlineshop_77/features/home/presentation/profile_screen.dart';
 import 'package:onlineshop_77/features/home/presentation/search_screen.dart';
-import 'package:onlineshop_77/features/home/data/repositories/data_repository.dart';
 import '../../../generated/locale_keys.g.dart';
 import 'widgets/w_appbar.dart';
 
@@ -29,76 +32,84 @@ class _DashboardState extends State<Dashboard> {
     FavoritesScreen(),
     ProfileScreen()
   ];
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    HomeRepository.getProducts("");
-  }
-
+  final List<Map<String, dynamic>> _bottomNavBarItems = [
+    {"icon": AppAssets.home, "label": LocaleKeys.main.tr()},
+    {"icon": AppAssets.search, "label": LocaleKeys.search.tr()},
+    {"icon": AppAssets.list, "label": LocaleKeys.category.tr()},
+    {"icon": AppAssets.heart, "label": LocaleKeys.favorites.tr()},
+    {"icon": AppAssets.user, "label": LocaleKeys.profile.tr()},
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: currentScreen == 4 ? null : const WAppBar(),
-      body: screens[currentScreen],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentScreen,
-        selectedItemColor: AppConstants.kBlackColor,
-        selectedLabelStyle: const TextStyle(
-          color: AppConstants.kBlackColor,
-          fontWeight: FontWeight.w600,
-        ),
-        selectedFontSize: 12,
-        unselectedFontSize: 12,
-        unselectedItemColor: AppConstants.kBlackColor,
-        onTap: (int screen) {
-          currentScreen = screen;
-          setState(() {});
-        },
-        elevation: 40,
-        backgroundColor: AppConstants.kWhiteColor,
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.home,
-                color: currentScreen == 0
-                    ? AppConstants.kPrimaryColor
-                    : AppConstants.kDarkGreyColor,
+      body: Stack(
+        children: [
+          screens[currentScreen],
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
               ),
-              label: LocaleKeys.main.tr()),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.search,
-                color: currentScreen == 1
-                    ? AppConstants.kPrimaryColor
-                    : AppConstants.kDarkGreyColor,
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                child: Container(
+                  color: AppConstants.kWhiteColor.withOpacity(0.7),
+                  height: 60,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: List.generate(_bottomNavBarItems.length, (index) {
+                      final item = _bottomNavBarItems[index];
+                      return GestureDetector(
+                        onTap: () {
+                          currentScreen = index;
+                          setState(() {});
+                        },
+                        child: Container(
+                          width: MediaQuery.of(context).size.width * 0.2,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: AppConstants.kTransparent,
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Spacer(),
+                              SvgPicture.asset(
+                                item["icon"],
+                                color: currentScreen == index
+                                    ? AppConstants.kPrimaryColor
+                                    : AppConstants.kDarkGreyColor,
+                              ),
+                              const Spacer(),
+                              Text(
+                                item["label"],
+                                style: TextStyle(
+                                    fontSize: 11,
+                                    color: currentScreen == index
+                                        ? AppConstants.kBlackColor
+                                        : AppConstants.kDarkGreyColor,
+                                    fontWeight: currentScreen == index
+                                        ? FontWeight.w700
+                                        : FontWeight.w500),
+                              ),
+                              const Spacer(),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
+                  ),
+                ),
               ),
-              label: LocaleKeys.search.tr()),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.list,
-                color: currentScreen == 2
-                    ? AppConstants.kPrimaryColor
-                    : AppConstants.kDarkGreyColor,
-              ),
-              label: LocaleKeys.category.tr()),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.heart,
-                color: currentScreen == 3
-                    ? AppConstants.kPrimaryColor
-                    : AppConstants.kDarkGreyColor,
-              ),
-              label: LocaleKeys.favorites.tr()),
-          BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                AppAssets.user,
-                color: currentScreen == 4
-                    ? AppConstants.kPrimaryColor
-                    : AppConstants.kDarkGreyColor,
-              ),
-              label: LocaleKeys.profile.tr()),
+            ),
+          )
         ],
       ),
     );

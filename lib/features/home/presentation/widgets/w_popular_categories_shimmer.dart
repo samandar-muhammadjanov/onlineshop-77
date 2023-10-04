@@ -15,6 +15,7 @@ class WPopularCategoriesShimmer extends StatelessWidget {
         separatorBuilder: (context, index) => const SizedBox(
           width: 8,
         ),
+        padding: const EdgeInsets.only(left: 16),
         physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         itemCount: 4,

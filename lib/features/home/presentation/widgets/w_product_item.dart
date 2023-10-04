@@ -46,7 +46,7 @@ class WProductItem extends StatelessWidget {
                       width: double.maxFinite,
                     ),
                     Container(
-                      height: 130 * 0.6,
+                      height: 130 * 0.9,
                       width: double.maxFinite,
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
@@ -58,6 +58,7 @@ class WProductItem extends StatelessWidget {
                           end: Alignment.center,
                           colors: [
                             const Color(0xff17181A).withOpacity(0.72),
+                            const Color(0xff17181A).withOpacity(0.22),
                             Colors.transparent
                           ],
                         ),

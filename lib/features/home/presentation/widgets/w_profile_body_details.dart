@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
+import 'package:onlineshop_77/features/home/presentation/about_app_screen.dart';
+import 'package:onlineshop_77/features/home/presentation/privacy_policy_screen.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_profile_body_items.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
@@ -47,6 +49,8 @@ class WProfileBodyDetail extends StatelessWidget {
           height: 12,
         ),
         WProfileBodyItem(
+          onPressed: () =>
+              Navigator.pushNamed(context, PrivacyPolicyScreen.routeName),
           svg: AppAssets.file,
           title: LocaleKeys.termsofuse.tr(),
         ),
@@ -54,6 +58,8 @@ class WProfileBodyDetail extends StatelessWidget {
           height: 12,
         ),
         WProfileBodyItem(
+          onPressed: () =>
+              Navigator.pushNamed(context, AboutAppScreen.routeName),
           svg: AppAssets.info,
           title: LocaleKeys.aboutApp.tr(),
         ),

@@ -50,5 +50,7 @@
 	<string>sms</string>
 	<string>tel</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Get album permissions</string>
 </dict>
 </plist>

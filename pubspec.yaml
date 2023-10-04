@@ -53,6 +53,12 @@ dependencies:
   dotted_border: ^2.1.0
   parent_child_checkbox: ^0.0.5
   url_launcher: ^6.1.14
+  screenshot: ^2.1.0
+  path_provider: ^2.1.1
+  image_gallery_saver: ^2.0.3
+  restart_app: ^1.2.1
+  yandex_mapkit: ^3.3.3
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:
@@ -83,6 +89,7 @@ flutter:
     - assets/icons/
     - assets/fonts/
     - assets/translations/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

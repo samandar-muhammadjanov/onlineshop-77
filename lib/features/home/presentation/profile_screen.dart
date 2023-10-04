@@ -6,10 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/auth/auth_bloc.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_logout_modal_sheet.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_profile_body.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_profile_header.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_profile_unauth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -32,10 +32,13 @@ class ProfileScreen extends StatelessWidget {
                 actions: [
                   IconButton(
                     onPressed: () async {
-                      SharedPreferences preferences =
-                          await SharedPreferences.getInstance();
-                      preferences.clear();
-                      context.read<AuthBloc>().add(AuthinticatedEvent(false));
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: AppConstants.kTransparent,
+                        builder: (context) {
+                          return const WLogoutModalSheet();
+                        },
+                      );
                     },
                     icon: SvgPicture.asset(AppAssets.logout),
                   )

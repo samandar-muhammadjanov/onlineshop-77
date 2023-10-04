@@ -11,8 +11,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<GetSearchProductsEvent>((event, emit) async {
       try {
         emit(SearchLoading());
-        final products =
-            await HomeRepository.getProducts("?search=${event.query}");
+        final products = await HomeRepository.getProducts(event.query);
         emit(SearchLoaded(products, event.query));
       } catch (e) {
         emit(SearchError(e.toString()));

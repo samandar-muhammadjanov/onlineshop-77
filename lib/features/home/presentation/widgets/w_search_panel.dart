@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/search/search_bloc.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/searchCompleteResults/search_result_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/searchOnchanged/search_onchanged_bloc.dart';
+import 'package:onlineshop_77/features/home/presentation/bloc/searchsys/saerchsys_bloc.dart';
 
 import '../../../../assets/assets.dart';
 import '../../../../assets/constants/constants.dart';
@@ -21,6 +21,7 @@ class WSearchPanel extends StatefulWidget {
 
 class _WSearchPanelState extends State<WSearchPanel> {
   final TextEditingController controller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,19 +32,23 @@ class _WSearchPanelState extends State<WSearchPanel> {
         textCapitalization: TextCapitalization.words,
         onChanged: (value) {
           if (value.isEmpty) {
-            context.read<SearchOnchangedBloc>().add(OnUnchangeEvent());
+            context.read<SearchsysBloc>().add(OnSearchInitialEvent());
           } else {
-            context.read<SearchOnchangedBloc>().add(OnchangeEvent());
+            context.read<SearchsysBloc>().add(OnSearchChangeEvent());
             context
                 .read<SearchCompleteResultBloc>()
                 .add(GetCompleteResultsEvent(value));
           }
         },
         onFieldSubmitted: (newValue) {
-          context.read<SearchOnchangedBloc>().add(OnUnchangeEvent());
-          context.read<SearchBloc>().add(
-                GetSearchProductsEvent(controller.text),
-              );
+          if (newValue.isNotEmpty) {
+            context.read<SearchsysBloc>().add(OnSearchResultEvent());
+            context
+                .read<SearchBloc>()
+                .add(GetSearchProductsEvent("?search${controller.text}"));
+          } else {
+            FocusScope.of(context).unfocus();
+          }
         },
         decoration: InputDecoration(
           prefixIcon: IconButton(
@@ -55,29 +60,23 @@ class _WSearchPanelState extends State<WSearchPanel> {
               color: AppConstants.kHintColor,
               fontSize: 16,
               fontWeight: FontWeight.w500),
-          suffixIcon: GestureDetector(
-            onTap: () {
-              context.read<SearchBloc>().add(
-                    GetSearchProductsEvent(controller.text),
-                  );
+          suffixIcon: BlocBuilder<SearchsysBloc, SearchsysState>(
+            builder: (context, state) {
+              if (state is OnSearchInitial) {
+                return const SizedBox();
+              } else {
+                return IconButton(
+                  onPressed: () {
+                    context.read<SearchsysBloc>().add(OnSearchInitialEvent());
+                    controller.clear();
+                    FocusScope.of(context).unfocus();
+                  },
+                  icon: SvgPicture.asset(
+                    AppAssets.close,
+                  ),
+                );
+              }
             },
-            child: Container(
-              margin: const EdgeInsets.only(
-                right: 6,
-              ),
-              width: 107,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  color: AppConstants.kBlackColor,
-                  borderRadius: BorderRadius.circular(6)),
-              child: Text(
-                LocaleKeys.search.tr(),
-                style: const TextStyle(
-                    color: AppConstants.kWhiteColor,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16),
-              ),
-            ),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: AppConstants.kGreyColor),
