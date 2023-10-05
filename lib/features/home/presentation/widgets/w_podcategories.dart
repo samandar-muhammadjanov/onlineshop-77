@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/core/utils/exports.dart';
-import 'package:onlineshop_77/features/home/data/model/m_categories.dart';
 
 class WPodCategories extends StatefulWidget {
   const WPodCategories({super.key});
@@ -10,6 +11,8 @@ class WPodCategories extends StatefulWidget {
 }
 
 class _WPodCategoriesState extends State<WPodCategories> {
+  List<dynamic> selectedCategories = [];
+  bool checkBoxes = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,99 +24,164 @@ class _WPodCategoriesState extends State<WPodCategories> {
               color: AppConstants.kDarkGreyColor, fontWeight: FontWeight.w500),
         ),
         const SizedBox(
-          height: 8,
+          height: 18,
         ),
-        // BlocBuilder<CategoriesBloc, CategoriesState>(
-        //   builder: (context, state) {
-        //     if (state is CategoriesLoaded) {
-        //       return CheckboxList(
-        //         categories: state.categories,
-        //       );
-        //     } else {
-        //       return const SizedBox();
-        //     }
-        //   },
-        // ),
+        BlocBuilder<CategoriesBloc, CategoriesState>(
+          builder: (context, state) {
+            if (state is CategoriesLoaded) {
+              return ListView.separated(
+                separatorBuilder: (context, index) => const Divider(
+                  height: 0,
+                  color: AppConstants.kBorderColor,
+                  thickness: 1,
+                ),
+                itemCount: state.categories.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  final category = state.categories[index];
+                  var isAnyChildSelected = category.childs
+                      .any((element) => element.isChecked == true);
+                  final selectedAll =
+                      selectedCategories.length == category.childs.length;
+                  return ExpansionTile(
+                    collapsedShape: Border.all(color: AppConstants.kWhiteColor),
+                    shape: Border.all(color: AppConstants.kWhiteColor),
+                    title: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                              height: 20,
+                              width: 20,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: isAnyChildSelected
+                                    ? AppConstants.kPrimaryColor
+                                    : AppConstants.kTransparent,
+                                borderRadius: BorderRadius.circular(6),
+                                border: Border.all(
+                                  color: AppConstants.kBorderColor,
+                                ),
+                              ),
+                              child: SvgPicture.asset(!selectedAll
+                                  ? AppAssets.minus
+                                  : AppAssets.check)),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          category.name,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: AppConstants.kBlackColor,
+                          ),
+                        )
+                      ],
+                    ),
+                    children: category.childs
+                        .map(
+                          (categoryChild) => ExpansionTile(
+                            tilePadding: const EdgeInsets.only(
+                              left: 40,
+                              right: 15,
+                            ),
+                            collapsedShape:
+                                Border.all(color: AppConstants.kWhiteColor),
+                            shape: Border.all(color: AppConstants.kWhiteColor),
+                            title: Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    categoryChild.isChecked =
+                                        !(categoryChild.isChecked as bool);
+                                    if (selectedCategories
+                                        .contains(categoryChild)) {
+                                      selectedCategories.remove(categoryChild);
+                                    } else {
+                                      selectedCategories.add(categoryChild);
+                                    }
+                                    setState(() {});
+                                  },
+                                  child: Container(
+                                    height: 20,
+                                    width: 20,
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      color: (categoryChild.isChecked as bool)
+                                          ? AppConstants.kPrimaryColor
+                                          : AppConstants.kTransparent,
+                                      borderRadius: BorderRadius.circular(6),
+                                      border: Border.all(
+                                        color: AppConstants.kBorderColor,
+                                      ),
+                                    ),
+                                    child: SvgPicture.asset(AppAssets.check),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  categoryChild.name,
+                                  style: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppConstants.kBlackColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                            children: categoryChild.childs != null
+                                ? (categoryChild.childs as List)
+                                    .map((categorChildChild) => Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 70, bottom: 15),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                height: 20,
+                                                width: 20,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(6),
+                                                  border: Border.all(
+                                                    color: AppConstants
+                                                        .kBorderColor,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 8,
+                                              ),
+                                              Text(
+                                                categorChildChild["name"],
+                                                style: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color:
+                                                      AppConstants.kBlackColor,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ))
+                                    .toList()
+                                : [],
+                          ),
+                        )
+                        .toList(),
+                  );
+                },
+              );
+            } else {
+              return const SizedBox();
+            }
+          },
+        ),
       ],
     );
   }
 }
-
-// class CheckboxList extends StatefulWidget {
-//   const CheckboxList({super.key, required this.categories});
-//   final List<Categories> categories;
-//   @override
-//   _CheckboxListState createState() => _CheckboxListState();
-// }
-
-// class _CheckboxListState extends State<CheckboxList> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListView.builder(
-//       shrinkWrap: true,
-//       physics: const NeverScrollableScrollPhysics(),
-//       itemCount: widget.categories.length,
-//       itemBuilder: (context, index) {
-//         final item = widget.categories[index];
-//         return CheckboxTile(item: item);
-//       },
-//     );
-//   }
-// }
-
-// class CheckboxTile extends StatefulWidget {
-//   final Categories item;
-
-//   CheckboxTile({required this.item});
-
-//   @override
-//   _CheckboxTileState createState() => _CheckboxTileState();
-// }
-
-// class _CheckboxTileState extends State<CheckboxTile> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ExpansionTile(
-//       title: Row(
-//         children: [
-//           Checkbox(
-//             value: widget.item.isChecked,
-//             onChanged: (value) {
-//               setState(() {
-//                 widget.item.isChecked = value!;
-//                 _updateChildren(widget.item, value);
-//                 _updateParent(widget.item, value);
-//               });
-//             },
-//           ),
-//           Text(widget.item.name),
-//         ],
-//       ),
-//       children: widget.item.childs.isNotEmpty
-//           ? widget.item.childs
-//               .map((child) => CheckboxTile(item: child as Categories))
-//               .toList()
-//           : [],
-//     );
-//   }
-
-//   void _updateChildren(Categories item, bool value) {
-//     for (var child in item.childs) {
-//       child.isChecked = value;
-//       _updateChildren(child as Categories, value);
-//     }
-//   }
-
-//   void _updateParent(Categories item, bool value) {
-//     if (item.isChecked && value == false) {
-//       for (var sibling in item.childs ?? []) {
-//         if (sibling.isChecked) return;
-//       }
-//       item.isChecked = false;
-//       _updateParent(item, value);
-//     } else if (!item.isChecked && value == true && item != null) {
-//       item.isChecked = true;
-//       _updateParent(item, value);
-//     }
-//   }
-// }

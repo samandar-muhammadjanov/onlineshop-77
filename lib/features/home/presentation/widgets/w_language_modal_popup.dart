@@ -6,6 +6,7 @@ import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/core/storage/store_keys.dart';
 import 'package:onlineshop_77/core/storage/storage_repository.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
+import 'package:onlineshop_77/features/home/presentation/widgets/w_divider.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_selected_item.dart';
 import 'package:onlineshop_77/features/home/presentation/widgets/w_modal_sheet_scroller.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
@@ -99,19 +100,6 @@ class _WLanguageModalPopupState extends State<WLanguageModalPopup> {
           ),
         )
       ],
-    );
-  }
-}
-
-class WDivider extends StatelessWidget {
-  const WDivider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Divider(
-      height: 0,
     );
   }
 }

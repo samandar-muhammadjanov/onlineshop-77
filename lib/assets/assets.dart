@@ -47,4 +47,9 @@ class AppAssets {
   static const String applogo = "assets/icons/applogo.svg";
   static const String uicBanner = "assets/images/Banner.png";
   static const String logout02 = "assets/icons/logout-02.svg";
+  static const String checkbox = "assets/icons/Checkbox.svg";
+  static const String checkminus = "assets/icons/checkminus.svg";
+  static const String checkoff = "assets/icons/offcheck.svg";
+  static const String check = "assets/icons/check.svg";
+  static const String minus = "assets/icons/minus.svg";
 }

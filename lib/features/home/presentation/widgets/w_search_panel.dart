@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/search/search_bloc.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/searchCompleteResults/search_result_bloc.dart';
+import 'package:onlineshop_77/features/home/presentation/bloc/searchedText/searched_text_bloc.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/searchsys/saerchsys_bloc.dart';
 
 import '../../../../assets/assets.dart';
@@ -38,6 +39,7 @@ class _WSearchPanelState extends State<WSearchPanel> {
             context
                 .read<SearchCompleteResultBloc>()
                 .add(GetCompleteResultsEvent(value));
+            context.read<SearchedTextBloc>().add(OnSearch(value));
           }
         },
         onFieldSubmitted: (newValue) {
@@ -45,7 +47,7 @@ class _WSearchPanelState extends State<WSearchPanel> {
             context.read<SearchsysBloc>().add(OnSearchResultEvent());
             context
                 .read<SearchBloc>()
-                .add(GetSearchProductsEvent("?search${controller.text}"));
+                .add(GetSearchProductsEvent("?search=${controller.text}"));
           } else {
             FocusScope.of(context).unfocus();
           }

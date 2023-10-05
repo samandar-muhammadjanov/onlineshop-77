@@ -53,12 +53,8 @@ class WPopularSearchs extends StatelessWidget {
                         context
                             .read<SearchsysBloc>()
                             .add(OnSearchResultEvent());
-                        context
-                            .read<SearchsysBloc>()
-                            .add(OnPopularSearchEvent(item.searchTerm));
-                        context
-                            .read<SearchBloc>()
-                            .add(GetSearchProductsEvent(item.searchTerm));
+                        context.read<SearchBloc>().add(GetSearchProductsEvent(
+                            "?search=${item.searchTerm}"));
                       },
                       contentPadding: EdgeInsets.zero,
                       minLeadingWidth: 0,

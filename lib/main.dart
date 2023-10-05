@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onlineshop_77/features/home/presentation/bloc/region/regions_bloc.dart';
+import 'package:onlineshop_77/features/home/presentation/bloc/searchedText/searched_text_bloc.dart';
 import './core/utils/exports.dart';
 
 void main() async {
@@ -105,6 +106,9 @@ class MyApp extends StatelessWidget {
             ..add(
               GetRegionsEvent(),
             ),
+        ),
+        BlocProvider(
+          create: (context) => SearchedTextBloc(),
         )
       ],
       child: MaterialApp(

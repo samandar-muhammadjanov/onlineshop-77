@@ -15,7 +15,7 @@ class AppConstants {
   static const Color kHintColor = Color(0xffB8BBBD);
   static const Color kBackgroundColor = Color(0xffF0F3F7);
   static const Color kTransparent = Colors.transparent;
-
+  static const Color kBorderColor = Color(0xffD5D8DB);
   static const String BASE_URL =
       "https://backendmaster.pythonanywhere.com/ru/api/v1/";
   static const String PRODUCTS = "store/list/ads/";
