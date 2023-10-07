@@ -4,24 +4,26 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/features/home/presentation/dashboard.dart';
+import 'package:onlineshop_77/core/routers/app_router.dart';
+import 'package:onlineshop_77/features/navigation/dashboard.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 class SuccessRegisterScreen extends StatelessWidget {
   const SuccessRegisterScreen({super.key});
-  static const String routeName = "/auth/register/success";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppConstants.kWhiteColor,
+      backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(
           onPressed: () => Navigator.pop(context),
           icon: SvgPicture.asset(
             AppAssets.arrowLeftSm,
-            color: AppConstants.kBlackColor,
+            color: AppColors.blackColor,
           ),
         ),
       ),
@@ -50,16 +52,15 @@ class SuccessRegisterScreen extends StatelessWidget {
                 LocaleKeys.successSub.tr(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  color: AppConstants.kGreyTextColor,
+                  color: AppColors.greyTextColor,
                 ),
               ),
               const Spacer(),
               ElevatedButton(
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                    context, Dashboard.routeName, (route) => false),
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(context, Routes.dashboard, (route) => false),
                 style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  shadowColor: AppConstants.kWhiteColor,
+                  shadowColor: AppColors.whiteColor,
                   minimumSize: const Size(double.infinity, 44),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
@@ -67,8 +68,7 @@ class SuccessRegisterScreen extends StatelessWidget {
                 ),
                 child: Text(
                   LocaleKeys.main.tr(),
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w600),
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
               ),
             ],

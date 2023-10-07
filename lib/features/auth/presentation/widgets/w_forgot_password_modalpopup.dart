@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/features/home/presentation/widgets/w_modal_sheet_scroller.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/features/common/widgets/w_modal_sheet_scroller.dart';
 
 class ForgotPasswordModalPopup extends StatelessWidget {
   const ForgotPasswordModalPopup({
@@ -24,7 +24,7 @@ class ForgotPasswordModalPopup extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             width: double.infinity,
             decoration: const BoxDecoration(
-                color: AppConstants.kWhiteColor,
+                color: AppColors.whiteColor,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20))),
@@ -47,7 +47,7 @@ class ForgotPasswordModalPopup extends StatelessWidget {
                   "Забыли пароль? Для восстановления пароля обратитесь администратору",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: AppConstants.kDarkGreyColor,
+                    color: AppColors.darkGreyColor,
                   ),
                 ),
                 const SizedBox(
@@ -57,7 +57,7 @@ class ForgotPasswordModalPopup extends StatelessWidget {
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     elevation: 0,
-                    shadowColor: AppConstants.kWhiteColor,
+                    shadowColor: AppColors.whiteColor,
                     minimumSize: const Size(double.infinity, 44),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),

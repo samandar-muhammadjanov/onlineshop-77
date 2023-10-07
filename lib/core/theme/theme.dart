@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:onlineshop_77/assets/assets.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
 
 class AppTheme {
   static ThemeData light = ThemeData(
-    fontFamily: AppAssets.fontFamily,
-    scaffoldBackgroundColor: AppConstants.kBackgroundColor,
+    fontFamily: "Inter",
+    scaffoldBackgroundColor: AppColors.backgroundColor,
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppConstants.kWhiteColor,
+      backgroundColor: AppColors.whiteColor,
       elevation: 0,
-      foregroundColor: AppConstants.kBlackColor,
+      foregroundColor: AppColors.blackColor,
     ),
   );
 }

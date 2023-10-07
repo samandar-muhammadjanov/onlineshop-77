@@ -1,14 +1,38 @@
-import 'package:flutter/material.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
+import 'package:get_it/get_it.dart';
+import 'package:onlineshop_77/core/api/dio_settings.dart';
+import 'package:onlineshop_77/features/auth/data/datasource/auth_datasource.dart';
+import 'package:onlineshop_77/features/auth/data/repositories/auth_repository_impl.dart';
+import 'package:onlineshop_77/features/categories/data/data_source/categories_datasource.dart';
+import 'package:onlineshop_77/features/categories/data/repositories/categories_repository_impl.dart';
+import 'package:onlineshop_77/features/create_ads/data/data_source/create_ads_datasource.dart';
+import 'package:onlineshop_77/features/favorites/data/datasource/favorite_datasource.dart';
+import 'package:onlineshop_77/features/favorites/data/repositories/favorite_repository_impl.dart';
+import 'package:onlineshop_77/features/profile/data/data_source/profile_datasource.dart';
+import 'package:onlineshop_77/features/search/data/data_source/search_datasource.dart';
+import 'package:onlineshop_77/features/search/data/repositories/search_repository_impl.dart';
 
-import '../../features/auth/presentation/widgets/w_forgot_password_modalpopup.dart';
+final serviceLocator = GetIt.I;
 
-class AppSingleton {
-  static void showForgotPassword(BuildContext context) {
-    showModalBottomSheet(
-      backgroundColor: AppConstants.kTransparent,
-      context: context,
-      builder: (context) => const ForgotPasswordModalPopup(),
-    );
-  }
+Future<void> setupLocator() async {
+  serviceLocator.registerLazySingleton(() => DioSettings());
+
+  serviceLocator.registerLazySingleton(() => AuthDataSourceImpl());
+
+  serviceLocator.registerLazySingleton(() => AuthRepositoryImpl());
+
+  serviceLocator.registerLazySingleton(() => CategoriesDataSourceImpl());
+
+  serviceLocator.registerLazySingleton(() => CategoriesRepositoryImpl());
+
+  serviceLocator.registerLazySingleton(() => CreateAdsDataSourceImpl());
+
+  serviceLocator.registerLazySingleton(() => SearchDataSourceImpl());
+
+  serviceLocator.registerLazySingleton(() => SearchRepositoryImpl());
+
+  serviceLocator.registerLazySingleton(() => ProfileDataSourceImpl());
+
+  serviceLocator.registerLazySingleton(() => FavoriteDataSourceImpl());
+
+  serviceLocator.registerLazySingleton(() => FavoriteRepositoryImpl());
 }

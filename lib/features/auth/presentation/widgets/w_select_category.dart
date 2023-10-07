@@ -1,12 +1,8 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/features/auth/presentation/bloc/bloc/category_bloc.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_category_modalpopup.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
@@ -32,7 +28,7 @@ class _WSelectCategoryState extends State<WSelectCategory> {
         Text(
           LocaleKeys.category.tr(),
           style: const TextStyle(
-            color: AppConstants.kDarkGreyColor,
+            color: AppColors.darkGreyColor,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -41,7 +37,7 @@ class _WSelectCategoryState extends State<WSelectCategory> {
           onTap: () {
             showModalBottomSheet(
               context: context,
-              backgroundColor: AppConstants.kTransparent,
+              backgroundColor: AppColors.transparent,
               builder: (context) => WCategoryModalPopup(),
             );
           },
@@ -51,19 +47,19 @@ class _WSelectCategoryState extends State<WSelectCategory> {
             alignment: Alignment.centerLeft,
             width: double.maxFinite,
             decoration: BoxDecoration(
-              color: AppConstants.kBackgroundColor,
+              color: AppColors.backgroundColor,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BlocBuilder<CategoryBloc, CategoryState>(
-                  builder: (context, state) {
-                    return Text(
-                      state.name == "" ? value : state.name,
-                    );
-                  },
-                ),
+                // BlocBuilder<CategoryBloc, CategoryState>(
+                //   builder: (context, state) {
+                //     return Text(
+                //       state.name == "" ? value : state.name,
+                //     );
+                //   },
+                // ),
                 SvgPicture.asset(AppAssets.chevronDown)
               ],
             ),

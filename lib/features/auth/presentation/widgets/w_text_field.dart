@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import '/assets/constants/constants.dart';
 
-class WTextField extends StatelessWidget {
-  const WTextField(
+class TextFieldWithTitle extends StatelessWidget {
+  const TextFieldWithTitle(
       {super.key,
       required this.title,
       this.hint,
@@ -19,6 +20,7 @@ class WTextField extends StatelessWidget {
       this.onFieldSubmitted,
       this.onSaved,
       this.onChanged});
+
   final String title;
   final String? hint;
   final TextEditingController? controller;
@@ -33,6 +35,7 @@ class WTextField extends StatelessWidget {
   final ValueChanged? onFieldSubmitted;
   final ValueChanged? onSaved;
   final Function(String)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -41,7 +44,7 @@ class WTextField extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            color: AppConstants.kDarkGreyColor,
+            color: AppColors.darkGreyColor,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -67,14 +70,14 @@ class WTextField extends StatelessWidget {
             prefixIconConstraints: BoxConstraints.tight(
               const Size(55, 50),
             ),
-            fillColor: AppConstants.kBackgroundColor,
+            fillColor: AppColors.backgroundColor,
             prefixIcon: prefix,
-            hintStyle: const TextStyle(color: AppConstants.kHintColor),
+            hintStyle: const TextStyle(color: AppColors.hintColor),
             filled: true,
             suffixIcon: suffix,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: const BorderSide(color: AppConstants.kPrimaryColor),
+              borderSide: const BorderSide(color: AppColors.primaryColor),
             ),
             errorBorder: OutlineInputBorder(
               borderSide: const BorderSide(color: Colors.red),

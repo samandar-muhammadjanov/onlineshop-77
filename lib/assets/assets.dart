@@ -33,7 +33,6 @@ class AppAssets {
   static const String forgotPasswordInfo = "assets/icons/info.svg";
   static const String successWishlist = "assets/icons/success_wishlist.svg";
   static const String phone02 = "assets/icons/phone_02.svg";
-  static const String fontFamily = "inter";
   static const String chevronLeft = "assets/icons/chevron-left.svg";
   static const String settings = "assets/icons/settings.svg";
   static const String globe = "assets/icons/globe.svg";

@@ -1,10 +1,8 @@
-// ignore_for_file: must_be_immutable, deprecated_member_use
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/categories/categories_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/widgets/w_modal_sheet_scroller.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/features/categories/presentation/blocs/categories_bloc.dart';
+import 'package:onlineshop_77/features/common/widgets/w_modal_sheet_scroller.dart';
 
 import '../registration_screen.dart';
 import 'w_category_child.dart';
@@ -15,7 +13,9 @@ class WCategoryModalPopup extends StatefulWidget {
     super.key,
     this.getCategoryId,
   });
+
   final Function(int, String)? getCategoryId;
+
   @override
   State<WCategoryModalPopup> createState() => _WCategoryModalPopupState();
 }
@@ -40,7 +40,7 @@ class _WCategoryModalPopupState extends State<WCategoryModalPopup> {
         Container(
           width: double.maxFinite,
           decoration: const BoxDecoration(
-            color: AppConstants.kWhiteColor,
+            color: AppColors.whiteColor,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -48,20 +48,20 @@ class _WCategoryModalPopupState extends State<WCategoryModalPopup> {
           ),
           child: BlocBuilder<CategoriesBloc, CategoriesState>(
             builder: (context, state) {
-              if (state is CategoriesLoaded) {
-                if (!isParentCategory) {
-                  return WCategoryChild(
-                    categoryId: categoryId,
-                    showChild: showChild,
-                    state: state,
-                  );
-                } else {
-                  return WCategoryParent(
-                    showChild: showChild,
-                    state: state,
-                  );
-                }
-              }
+              // if (state is CategoriesLoaded) {
+              //   if (!isParentCategory) {
+              //     return WCategoryChild(
+              //       categoryId: categoryId,
+              //       showChild: showChild,
+              //       state: state,
+              //     );
+              //   } else {
+              //     return WCategoryParent(
+              //       showChild: showChild,
+              //       state: state,
+              //     );
+              //   }
+              // }
               return const SizedBox(
                 height: 300,
                 width: double.maxFinite,

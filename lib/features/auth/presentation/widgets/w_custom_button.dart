@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 
 class WCustomButton extends StatelessWidget {
@@ -32,9 +33,9 @@ class WCustomButton extends StatelessWidget {
               child: Ink(
                 height: 44,
                 decoration: BoxDecoration(
-                  color: (hasBorder) ? null : AppConstants.kPrimaryColor,
+                  color: (hasBorder) ? null : AppColors.primaryColor,
                   border: (hasBorder)
-                      ? Border.all(color: AppConstants.kPrimaryColor)
+                      ? Border.all(color: AppColors.primaryColor)
                       : null,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(8),
@@ -46,8 +47,8 @@ class WCustomButton extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 16,
                         color: hasBorder
-                            ? AppConstants.kPrimaryColor
-                            : AppConstants.kWhiteColor),
+                            ? AppColors.primaryColor
+                            : AppColors.whiteColor),
                   ),
                 ),
               ),
@@ -63,9 +64,9 @@ class WCustomButton extends StatelessWidget {
             child: Ink(
               height: 44,
               decoration: BoxDecoration(
-                color: (hasBorder) ? null : AppConstants.kGreyColor,
+                color: (hasBorder) ? null : AppColors.greyColor,
                 border: (hasBorder)
-                    ? Border.all(color: AppConstants.kPrimaryColor)
+                    ? Border.all(color: AppColors.primaryColor)
                     : null,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(8),
@@ -78,8 +79,8 @@ class WCustomButton extends StatelessWidget {
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: hasBorder
-                          ? AppConstants.kPrimaryColor
-                          : AppConstants.kBlackColor),
+                          ? AppColors.primaryColor
+                          : AppColors.blackColor),
                 ),
               ),
             ),

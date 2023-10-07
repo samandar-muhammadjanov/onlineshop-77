@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
 
 import '../../../../assets/constants/constants.dart';
 import '../../../../generated/locale_keys.g.dart';
@@ -22,7 +23,7 @@ class LoginIntroductionWidget extends StatelessWidget {
         Text(
           LocaleKeys.welcomeSub.tr(),
           style: const TextStyle(
-              color: AppConstants.kDarkGreyColor,
+              color: AppColors.darkGreyColor,
               fontWeight: FontWeight.w500,
               fontSize: 12),
         ),

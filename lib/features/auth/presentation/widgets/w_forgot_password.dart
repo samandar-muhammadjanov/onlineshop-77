@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../assets/constants/constants.dart';
-import '../../../../core/singleton/singleton.dart';
-import '../../../../generated/locale_keys.g.dart';
+import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 class WForgotPassword extends StatelessWidget {
   const WForgotPassword({
@@ -13,12 +11,12 @@ class WForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => AppSingleton.showForgotPassword(context),
+      // onTap: () => AppSingleton.showForgotPassword(context),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Text(
           LocaleKeys.forgotPassword.tr(),
-          style: const TextStyle(color: AppConstants.kPrimaryColor),
+          style: const TextStyle(color: AppColors.primaryColor),
         ),
       ),
     );

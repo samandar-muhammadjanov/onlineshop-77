@@ -2,54 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:onlineshop_77/features/auth/presentation/login_screen.dart';
 import 'package:onlineshop_77/features/auth/presentation/registration_screen.dart';
 import 'package:onlineshop_77/features/auth/presentation/succes_register_screen.dart';
-import 'package:onlineshop_77/features/home/presentation/about_app_screen.dart';
-import 'package:onlineshop_77/features/home/presentation/add_product_screen.dart';
-import 'package:onlineshop_77/features/home/presentation/dashboard.dart';
-import 'package:onlineshop_77/features/home/presentation/my_products_screen.dart';
-import 'package:onlineshop_77/features/home/presentation/personal_information_screen.dart';
-import 'package:onlineshop_77/features/home/presentation/privacy_policy_screen.dart';
-import 'package:onlineshop_77/features/home/presentation/seller_products_screen.dart';
+import 'package:onlineshop_77/features/categories/presentation/pages/seller_products_screen.dart';
+import 'package:onlineshop_77/features/profile/presentation/pages/about_app_screen.dart';
+import 'package:onlineshop_77/features/create_ads/presentation/pages/add_product_screen.dart';
+import 'package:onlineshop_77/features/navigation/dashboard.dart';
+import 'package:onlineshop_77/features/profile/presentation/pages/my_products_screen.dart';
+import 'package:onlineshop_77/features/profile/presentation/pages/personal_information_screen.dart';
+import 'package:onlineshop_77/features/profile/presentation/pages/privacy_policy_screen.dart';
 
-class AppRouter {
+class Routes {
+  static const String dashboard = '/dashboard';
+  static const String login = "/auth/login";
+  static const String signIn = "/auth/signIn";
+  static const String registerSuccess = "/auth/register/success";
+  static const String personalInfo = "/personal-information";
+  static const String addsMy = "/ads/my";
+  static const String addPost = "/addpost";
+  static const String privacyPolicy = "/privacy-policy";
+  static const String aboutApp = "/aboutapp";
+  static const String sellProducts = "/seller/products";
+
   static Route? onGenerateRoute(RouteSettings routeSettings) {
+    final Map<String, dynamic>? args = routeSettings.arguments as Map<String, dynamic>?;
+    args ?? <String, dynamic>{};
+
     switch (routeSettings.name) {
-      case Dashboard.routeName:
+      case dashboard:
         return MaterialPageRoute(
           builder: (context) => const Dashboard(),
         );
-      case LoginScreen.routeName:
+      case login:
         return MaterialPageRoute(
           builder: (context) => const LoginScreen(),
         );
-      case RegistrationScreen.routeName:
+      case signIn:
         return MaterialPageRoute(
           builder: (context) => const RegistrationScreen(),
         );
-      case SuccessRegisterScreen.routeName:
+      case registerSuccess:
         return MaterialPageRoute(
           builder: (context) => const SuccessRegisterScreen(),
         );
-      case PersonalInformationScreen.routeName:
+      case personalInfo:
         return MaterialPageRoute(
           builder: (context) => const PersonalInformationScreen(),
         );
-      case MyProductsScreen.routeName:
+      case addsMy:
         return MaterialPageRoute(
           builder: (context) => const MyProductsScreen(),
         );
-      case AddProductScreen.routeName:
+      case addPost:
         return MaterialPageRoute(
           builder: (context) => const AddProductScreen(),
         );
-      case PrivacyPolicyScreen.routeName:
+      case privacyPolicy:
         return MaterialPageRoute(
           builder: (context) => const PrivacyPolicyScreen(),
         );
-      case AboutAppScreen.routeName:
+      case aboutApp:
         return MaterialPageRoute(
           builder: (context) => const AboutAppScreen(),
         );
-      case SellerProductsScreen.routeName:
+      case sellProducts:
         return MaterialPageRoute(
           builder: (context) => const SellerProductsScreen(),
         );
