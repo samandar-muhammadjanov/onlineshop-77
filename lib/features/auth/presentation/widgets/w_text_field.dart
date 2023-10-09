@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 import '/assets/constants/constants.dart';
 
 class TextFieldWithTitle extends StatelessWidget {
@@ -43,9 +44,9 @@ class TextFieldWithTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            color: AppColors.darkGreyColor,
+          style: context.textTheme.bodySmall!.copyWith(
             fontWeight: FontWeight.w500,
+            color: AppColors.darkGreyColor,
           ),
         ),
         const SizedBox(height: 8),
@@ -60,7 +61,7 @@ class TextFieldWithTitle extends StatelessWidget {
           keyboardType: keyboardType,
           inputFormatters: inputFormatters,
           textCapitalization: TextCapitalization.words,
-          style: const TextStyle(fontSize: 14),
+          style: context.textTheme.bodySmall!,
           onTapOutside: (event) {
             FocusScope.of(context).unfocus();
           },
@@ -71,9 +72,9 @@ class TextFieldWithTitle extends StatelessWidget {
               const Size(55, 50),
             ),
             fillColor: AppColors.backgroundColor,
-            prefixIcon: prefix,
             hintStyle: const TextStyle(color: AppColors.hintColor),
             filled: true,
+            prefixIcon: prefix,
             suffixIcon: suffix,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

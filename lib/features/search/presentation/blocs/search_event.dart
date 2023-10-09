@@ -9,5 +9,10 @@ sealed class SearchEvent extends Equatable {
 
 class GetSearchProductsEvent extends SearchEvent {
   final String query;
+
   const GetSearchProductsEvent(this.query);
+}
+
+class GetRegionsEvent extends SearchEvent {
+  const GetRegionsEvent();
 }

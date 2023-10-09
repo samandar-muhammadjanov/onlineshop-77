@@ -1,8 +1,7 @@
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/categories/presentation/pages/product_detail_screen.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product_detail.dart';
+import 'package:onlineshop_77/features/create_ads/domain/entities/ads_entity.dart';
 
 class WProductItemForGallery extends StatelessWidget {
   const WProductItemForGallery({
@@ -10,7 +9,7 @@ class WProductItemForGallery extends StatelessWidget {
     required this.item,
   });
 
-  final ProductDetail item;
+  final AdsEntity item;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +89,7 @@ class WProductItemForGallery extends StatelessWidget {
                         color: AppColors.backgroundColor,
                         borderRadius: BorderRadius.circular(6)),
                     child: Text(
-                      item.address.district.region.name,
+                      'item.address.district.region.name',
                       style: const TextStyle(
                         color: AppColors.darkGreyColor,
                         fontSize: 10,
@@ -106,13 +105,13 @@ class WProductItemForGallery extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    item.publishedAt.formatApiDate(),
+                    'item.publishedAt.formatApiDate()',
                     style: const TextStyle(
                         fontSize: 10, color: AppColors.darkGreyColor),
                   ),
                   const Gap(),
                   Text(
-                    item.seller.phoneNumber.formatPhoneNumberWithSpaces(),
+                    'item.seller.phoneNumber.formatPhoneNumberWithSpaces()',
                     style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.darkGreyColor,
@@ -125,7 +124,7 @@ class WProductItemForGallery extends StatelessWidget {
                       style: const TextStyle(color: AppColors.blackColor),
                       children: [
                         TextSpan(
-                          text: "${item.price.formatWithSpaces()}  ",
+                          text: "item.price.formatWithSpaces()",
                           style: const TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,

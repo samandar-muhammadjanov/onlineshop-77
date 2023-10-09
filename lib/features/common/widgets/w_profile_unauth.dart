@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/core/routers/app_router.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_custom_button.dart';
 import 'package:onlineshop_77/features/common/widgets/w_appbar_language_item.dart';
 import 'package:onlineshop_77/features/common/widgets/w_profile_body_details.dart';
@@ -26,59 +27,60 @@ class WProfileUnAuth extends StatelessWidget {
           width: 77,
         ),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                LocaleKeys.logoutTitle.tr(),
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Text(
-                LocaleKeys.logoutSubtitle.tr(),
-                textAlign: TextAlign.center,
-                style: const TextStyle(color: AppColors.darkGreyColor),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              WCustomButton(
-                text: LocaleKeys.logIn.tr(),
-                onPressed: () =>
-                    Navigator.pushNamed(context, Routes.dashboard),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Divider(),
-                  Text(LocaleKeys.or.tr()),
-                  const Divider(),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              WCustomButton(
-                text: LocaleKeys.signIn.tr(),
-                onPressed: () =>
-                    Navigator.pushNamed(context, Routes.dashboard),
-                hasBorder: true,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              const WProfileBodyDetail()
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: Column(
+          children: [
+            Text(
+              LocaleKeys.logoutTitle.tr(),
+              style: context.textTheme.displaySmall!.copyWith(color: AppColors.blackColor),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              LocaleKeys.logoutSubtitle.tr(),
+              textAlign: TextAlign.center,
+              style: context.textTheme.bodySmall!.copyWith(color: AppColors.greyTextColor),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            WCustomButton(
+              text: LocaleKeys.logIn.tr(),
+              onPressed: () => Navigator.pushNamed(context, Routes.login),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(width: 75, child: Divider(color: AppColors.hintColor)),
+                const SizedBox(width: 8),
+                Text(
+                  LocaleKeys.or.tr(),
+                  style: context.textTheme.labelMedium!.copyWith(
+                    color: AppColors.greyTextColor,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                const SizedBox(width: 75, child: Divider(color: AppColors.hintColor)),
+              ],
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            WCustomButton(
+              text: LocaleKeys.signIn.tr(),
+              onPressed: () => Navigator.pushNamed(context, Routes.signIn),
+              hasBorder: true,
+            ),
+            const SizedBox(height: 16),
+            const Divider(color: AppColors.hintColor),
+            const SizedBox(height: 16),
+            WProfileBodyDetail()
+          ],
         ),
       ),
     );

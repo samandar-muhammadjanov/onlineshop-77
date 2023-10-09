@@ -4,29 +4,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/features/auth/presentation/bloc/bloc/category_bloc.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_text_field.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_category_modalpopup.dart';
 
-class WImportantInformations extends StatefulWidget {
-  const WImportantInformations({
+class WImportantInformation extends StatefulWidget {
+  const WImportantInformation({
     super.key,
     required this.getImportantIInfo,
     required this.formKey,
   });
+
   final Function(String, int, String) getImportantIInfo;
   final GlobalKey<FormState> formKey;
+
   @override
-  State<WImportantInformations> createState() => _WImportantInformationsState();
+  State<WImportantInformation> createState() => _WImportantInformationState();
 }
 
-class _WImportantInformationsState extends State<WImportantInformations> {
+class _WImportantInformationState extends State<WImportantInformation> {
   int categoryId = 0;
   String productName = '';
   String categoryName = '';
   String description = '';
+
   void _getCategoryId(int id, String name) {
     setState(() {
       categoryId = id;
@@ -88,19 +89,15 @@ class _WImportantInformationsState extends State<WImportantInformations> {
               height: 44,
               padding: const EdgeInsets.symmetric(horizontal: 12),
               width: double.infinity,
-              decoration: BoxDecoration(
-                  color: AppColors.backgroundColor,
-                  borderRadius: BorderRadius.circular(8)),
+              decoration: BoxDecoration(color: AppColors.backgroundColor, borderRadius: BorderRadius.circular(8)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BlocBuilder<CategoryBloc, CategoryState>(
-                    builder: (context, state) {
-                      return Text(state.name.isEmpty
-                          ? LocaleKeys.selectCategory.tr()
-                          : state.name);
-                    },
-                  ),
+                  // BlocBuilder<CategoryBloc, CategoryState>(
+                  //   builder: (context, state) {
+                  Text('CategoryBloc'),
+                  //   },
+                  // ),
                   SvgPicture.asset(AppAssets.chevronDown)
                 ],
               ),

@@ -12,7 +12,6 @@ import 'package:onlineshop_77/features/common/widgets/w_product_detail_descripti
 import 'package:onlineshop_77/features/common/widgets/w_product_detail_location.dart';
 import 'package:onlineshop_77/features/common/widgets/w_product_detail_shimmer.dart';
 import 'package:onlineshop_77/features/common/widgets/w_save_to_gallery_btn.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/productDetail/product_detail_bloc.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key, required this.slug});
@@ -42,42 +41,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               ),
             ),
           ),
-          BlocProvider(
-            create: (context) => ProductDetailBloc()
-              ..add(
-                GetProductDetail(
-                  widget.slug,
-                ),
-              ),
-            child: BlocBuilder<ProductDetailBloc, ProductDetailState>(
-              builder: (context, state) {
-                if (state is ProductDetailInitial) {
-                  return const WProductDetailShimmer();
-                } else if (state is ProductDetailLoading) {
-                  return const WProductDetailShimmer();
-                } else if (state is ProductDetailError) {
-                  return const WProductDetailShimmer();
-                } else if (state is ProductDetailLoaded) {
-                  final product = state.productDetail;
-                  return Column(
-                    children: [
-                      WProductImages(product: product),
-                      const Gap(),
-                      WProductDetailDescription(
-                          description: product.description),
-                      const Gap(),
-                      WPDAboutSeller(seller: product.seller),
-                      const Gap(),
-                      WPDLocation(address: product.address),
-                      WSaveToGalleryBtn(item: product),
-                    ],
-                  );
-                } else {
-                  return const WProductDetailShimmer();
-                }
-              },
-            ),
-          )
+          WProductDetailShimmer(),
+          // Column(
+          //   children: [
+          //     WProductImages(product: product),
+          //     const Gap(),
+          //     WProductDetailDescription(
+          //         description: product.description),
+          //     const Gap(),
+          //     WPDAboutSeller(seller: product.seller),
+          //     const Gap(),
+          //     WPDLocation(address: product.address),
+          //     WSaveToGalleryBtn(item: product),
+          //   ],
+          // )
         ],
       ),
     );

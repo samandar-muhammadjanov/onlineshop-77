@@ -17,6 +17,7 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   bool isParentCategory = false;
   int categoryIndex = 0;
+
   void _routeToChild(bool isParentCategory, int categoryIndex) {
     setState(() {
       this.isParentCategory = isParentCategory;

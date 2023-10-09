@@ -6,19 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/assets/theme/theme.dart';
 import 'package:onlineshop_77/core/localization/supported_localizations.dart';
 import 'package:onlineshop_77/core/routers/app_router.dart';
-import 'package:onlineshop_77/core/storage/local_storage_repository.dart';
 import 'package:onlineshop_77/core/storage/storage_repository.dart';
-import 'package:onlineshop_77/core/theme/theme.dart';
 import 'package:onlineshop_77/features/auth/presentation/bloc/auth/auth_bloc.dart';
 import 'package:onlineshop_77/features/categories/presentation/blocs/categories_bloc.dart';
-import 'package:onlineshop_77/features/favorites/presentation/blocs/favorites_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/layout/layout_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/popularSearchs/popular_searchs_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/productBloc/product_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/productByCatgory/product_by_category_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/productDetail/product_detail_bloc.dart';
 import 'package:onlineshop_77/features/search/presentation/blocs/search_bloc.dart';
 
 void main() async {
@@ -58,31 +51,10 @@ class MyApp extends StatelessWidget {
           create: (_) => AuthBloc(),
         ),
         BlocProvider(
-          create: (context) => ProductBloc()..add(GetProductsEvent("")),
-        ),
-        BlocProvider(
           create: (context) => CategoriesBloc()..add(GetCategoriesEvent()),
         ),
         BlocProvider(
-          create: (context) => PopularSearchsBloc()..add(GetPopularSearchsEvent()),
-        ),
-        BlocProvider(
-          create: (context) => FavoritesBloc(localstorageRepository: LocalstorageRepository())
-            ..add(
-              StartFavorites(),
-            ),
-        ),
-        BlocProvider(
           create: (context) => SearchBloc(),
-        ),
-        BlocProvider(
-          create: (context) => LayoutBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ProductDetailBloc(),
-        ),
-        BlocProvider(
-          create: (context) => ProductByCategoryBloc(),
         ),
       ],
       child: MaterialApp(

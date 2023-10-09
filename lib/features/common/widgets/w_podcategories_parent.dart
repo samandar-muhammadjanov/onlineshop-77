@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/features/categories/domain/entities/categories_entity.dart';
 import 'package:onlineshop_77/features/common/widgets/w_podcategories_child.dart';
 import 'package:onlineshop_77/features/categories/data/models/caregories_model.dart';
 
 class WPodCategoriesParent extends StatelessWidget {
   const WPodCategoriesParent({super.key, required this.categories});
-  final List<Categories> categories;
+
+  final List<CategoriesEntity> categories;
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -14,8 +17,7 @@ class WPodCategoriesParent extends StatelessWidget {
       itemCount: categories.length,
       itemBuilder: (ctx, i) {
         final category = categories[i];
-        var isAnyChildSelected =
-            category.childs.any((element) => element.isChecked == true);
+        var isAnyChildSelected = category.childs.any((element) => element.isChecked == true);
         return ExpansionTile(
           collapsedShape: Border.all(color: AppColors.whiteColor),
           shape: Border.all(color: AppColors.whiteColor),
@@ -50,7 +52,9 @@ class WPodCategoriesParent extends StatelessWidget {
           ),
           children: List.generate(category.childs.length, (index) {
             final childCategories = category.childs[index];
-            return WPodCategoriesChild(category: childCategories);
+            return WPodCategoriesChild(
+              category: childCategories,
+            );
           }),
         );
       },

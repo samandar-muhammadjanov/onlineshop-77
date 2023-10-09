@@ -1,78 +1,57 @@
-// ignore_for_file: unused_field, invalid_use_of_visible_for_testing_member
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import '../../../../core/storage/local_storage_repository.dart';
-import '../../../home/data/model/m_favorites.dart';
-import '../../../home/data/model/m_product.dart';
+import 'package:onlineshop_77/core/usecases/usecase.dart';
+import 'package:onlineshop_77/features/favorites/domain/entities/favorite_entity.dart';
+import 'package:onlineshop_77/features/favorites/domain/usecase/get_favorites_usecase.dart';
+import 'package:onlineshop_77/features/favorites/domain/usecase/make_favorite_usecase.dart';
 
 part 'favorites_event.dart';
 
 part 'favorites_state.dart';
 
 class FavoritesBloc extends Bloc<FavoritesEvent, FavoritesState> {
-  final LocalstorageRepository _localstorageRepository;
+  final GetFavoritesUseCase _favoritesUseCase = GetFavoritesUseCase();
+  final MakeFavoriteUseCase _makeFavoriteUseCase = MakeFavoriteUseCase();
 
-  FavoritesBloc({
-    required LocalstorageRepository localstorageRepository,
-  })  : _localstorageRepository = localstorageRepository,
-        super(FavoritesLoading()) {
-    on<StartFavorites>((event, emit) => _startFavorites());
-    on<AddToFavorites>((event, emit) => _addFavorites(event, state));
-    on<RemoveFromFavorites>((event, emit) => _removeFavorites(event, state));
-  }
+  FavoritesBloc() : super(const FavoritesState()) {
+    on<StartFavorites>(
+      (event, emit) async {
+        emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+        final result = await _favoritesUseCase(NoParams());
+        if (result.isRight) {
+          emit(state.copyWith(
+            status: FormzSubmissionStatus.success,
+            favoriteList: result.right,
+          ));
+        } else {
+          emit(state.copyWith(status: FormzSubmissionStatus.failure));
+        }
+      },
+    );
 
-  void _startFavorites() async {
-    emit(FavoritesLoading());
-    try {
-      Box box = await _localstorageRepository.openBox();
-      List<Result> products = _localstorageRepository.getFavorites(box);
-      await Future.delayed(const Duration(seconds: 1));
-      emit(FavoritesLoaded(Favorites(products: products)));
-    } catch (e) {
-      emit(FavoritesError(e.toString()));
-    }
-  }
+    on<AddToFavorites>(
+      (event, emit) async {
+        emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+        final result = await _makeFavoriteUseCase(event.favoritesEntity.id);
+        if (result.isRight) {
+          List<FavoritesEntity> newList = [...state.favoriteList];
+          newList.remove(event.favoritesEntity);
+          emit(state.copyWith(
+            status: FormzSubmissionStatus.success,
+            favoriteList: newList,
+          ));
+        } else {
+          emit(state.copyWith(status: FormzSubmissionStatus.failure));
+        }
+      },
+    );
 
-  void _addFavorites(
-    AddToFavorites event,
-    FavoritesState state,
-  ) async {
-    if (state is FavoritesLoaded) {
-      try {
-        Box box = await _localstorageRepository.openBox();
-        _localstorageRepository.addNewstoFavorites(box, event.post);
-        emit(
-          FavoritesLoaded(
-            Favorites(
-              products: List.from(state.favorites.products)..add(event.post),
-            ),
-          ),
-        );
-      } catch (e) {
-        emit(FavoritesError(e.toString()));
-      }
-    }
-  }
+    on<RemoveToFavorites>(
+      (event, emit) async {
 
-  void _removeFavorites(RemoveFromFavorites event, FavoritesState state) async {
-    if (state is FavoritesLoaded) {
-      try {
-        Box box = await _localstorageRepository.openBox();
-        _localstorageRepository.removeNewsFromFavorites(box, event.post);
-        emit(
-          FavoritesLoaded(
-            Favorites(
-              products: List.from(state.favorites.products)..remove(event.post),
-            ),
-          ),
-        );
-      } catch (e) {
-        emit(FavoritesError(e.toString()));
-      }
-    }
+      },
+    );
   }
 }

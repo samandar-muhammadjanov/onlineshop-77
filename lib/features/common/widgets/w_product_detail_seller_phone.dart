@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:onlineshop_77/core/routers/app_router.dart';
 import 'package:onlineshop_77/core/utils/extentions.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/productBloc/product_bloc.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 
@@ -31,9 +30,9 @@ class _ShowPhoneNumberState extends State<ShowPhoneNumber> {
         ),
         GestureDetector(
           onTap: () {
-            context
-                .read<ProductBloc>()
-                .add(GetProductsEvent("?seller_id=${widget.sellerId}"));
+            // context
+            //     .read<ProductBloc>()
+            //     .add(GetProductsEvent("?seller_id=${widget.sellerId}"));
             Navigator.pushNamed(context, Routes.dashboard);
           },
           child: Container(

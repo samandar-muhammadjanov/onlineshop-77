@@ -8,7 +8,6 @@ part 'ads_model.g.dart';
 @JsonSerializable(fieldRename: FieldRename.snake)
 class AdsModel extends AdsEntity {
   const AdsModel({
-    super.extra,
     super.id,
     super.name,
     super.slug,
@@ -20,6 +19,7 @@ class AdsModel extends AdsEntity {
     super.address,
     super.seller,
     super.photos,
+    super.extra,
   });
 
   factory AdsModel.fromJson(Map<String, dynamic> json) => _$AdsModelFromJson(json);

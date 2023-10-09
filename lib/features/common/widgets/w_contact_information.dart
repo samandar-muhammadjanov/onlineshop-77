@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_text_field.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/user/user_bloc.dart';
+import 'package:onlineshop_77/features/profile/presentation/blocs/profile/user_bloc.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 class WContactInformation extends StatelessWidget {
@@ -17,7 +17,7 @@ class WContactInformation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (context, state) {
-        if (state is UserLoaded) {
+        if (state.status.isSuccess) {
           return Container(
             padding: const EdgeInsets.all(20),
             decoration: const BoxDecoration(
@@ -28,8 +28,7 @@ class WContactInformation extends StatelessWidget {
               children: [
                 Text(
                   LocaleKeys.contactInfo.tr(),
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w700),
+                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 16,
@@ -37,8 +36,7 @@ class WContactInformation extends StatelessWidget {
                 TextFieldWithTitle(
                   readOnly: true,
                   title: LocaleKeys.fio.tr(),
-                  controller:
-                      TextEditingController(text: state.userData.fullName),
+                  controller: TextEditingController(text: state.userEntity.fullName),
                 ),
                 const SizedBox(
                   height: 16,
@@ -46,7 +44,7 @@ class WContactInformation extends StatelessWidget {
                 TextFieldWithTitle(
                   readOnly: true,
                   title: LocaleKeys.email.tr(),
-                  controller: TextEditingController(text: state.userData.email),
+                  controller: TextEditingController(text: state.userEntity.email),
                 ),
                 const SizedBox(
                   height: 16,
@@ -56,8 +54,8 @@ class WContactInformation extends StatelessWidget {
                   title: LocaleKeys.phoneNumber.tr(),
                   hint: "(__) ___-__-__",
                   controller: TextEditingController(
-                      text: state.userData.phoneNumber
-                          .formatPhoneNumberWithSpaces()),
+                    text: state.userEntity.phoneNumber.formatPhoneNumberWithSpaces(),
+                  ),
                 )
               ],
             ),
@@ -73,8 +71,7 @@ class WContactInformation extends StatelessWidget {
             children: [
               Text(
                 LocaleKeys.contactInfo.tr(),
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
               ),
               const SizedBox(
                 height: 16,

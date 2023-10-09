@@ -4,13 +4,15 @@ import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 
-class WProfileBodyItem extends StatelessWidget {
-  const WProfileBodyItem(
-      {super.key, required this.svg, required this.title, this.onPressed});
+class ProfileActionItem extends StatelessWidget {
+  const ProfileActionItem({super.key, required this.svg, required this.title, this.onPressed});
+
   final String svg;
   final String title;
   final VoidCallback? onPressed;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,8 +22,9 @@ class WProfileBodyItem extends StatelessWidget {
           horizontal: 12,
         ),
         decoration: BoxDecoration(
-            border: Border.all(color: AppColors.backgroundColor),
-            borderRadius: BorderRadius.circular(8)),
+          border: Border.all(color: AppColors.backgroundColor),
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: ListTile(
           minLeadingWidth: 0,
           contentPadding: EdgeInsets.zero,
@@ -32,7 +35,9 @@ class WProfileBodyItem extends StatelessWidget {
           ),
           title: Text(
             title,
-            style: const TextStyle(fontWeight: FontWeight.w600),
+            style: context.textTheme.headlineLarge!.copyWith(
+              color: AppColors.blackColor,
+            ),
           ),
         ),
       ),

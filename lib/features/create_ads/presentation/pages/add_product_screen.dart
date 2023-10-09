@@ -76,7 +76,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
           children: [
             const WContactInformation(),
             const Gap(),
-            WImportantInformations(getImportantIInfo: _getImportantInformations, formKey: _formKey),
+            WImportantInformation(getImportantIInfo: _getImportantInformations, formKey: _formKey),
             const Gap(),
             WPrice(getPrice: _getPrices, formKey: _formKey),
             const Gap(),

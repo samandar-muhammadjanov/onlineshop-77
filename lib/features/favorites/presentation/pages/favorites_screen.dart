@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:formz/formz.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/core/utils/size_config.dart';
 import 'package:onlineshop_77/features/common/widgets/w_product_item.dart';
@@ -42,11 +43,11 @@ class FavoritesScreen extends StatelessWidget {
         ),
         BlocBuilder<FavoritesBloc, FavoritesState>(
           builder: (context, state) {
-            if (state is FavoritesLoaded) {
+            if (state.status.isSuccess) {
               return GridView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
-                itemCount: state.favorites.products.length,
+                itemCount: state.favoriteList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 12,
@@ -54,12 +55,13 @@ class FavoritesScreen extends StatelessWidget {
                   childAspectRatio: wi(0.598),
                 ),
                 itemBuilder: (context, index) {
-                  final item = state.favorites.products[index];
+                  final item = state.favoriteList[index];
                   return WProductItem(item: item);
                 },
               );
+            } else {
+              return const WProductShimmer();
             }
-            return const WProductShimmer();
           },
         )
       ],

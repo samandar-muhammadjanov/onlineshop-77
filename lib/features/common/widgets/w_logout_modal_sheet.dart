@@ -6,7 +6,6 @@ import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
 import 'package:onlineshop_77/features/common/widgets/w_modal_sheet_scroller.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/auth/auth_bloc.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -102,7 +101,7 @@ class WLogoutModalSheet extends StatelessWidget {
                         onPressed: () async {
                           SharedPreferences preferences = await SharedPreferences.getInstance();
                           preferences.clear();
-                          context.read<AuthBloc>().add(AuthinticatedEvent());
+                          // context.read<AuthBloc>().add(AuthinticatedEvent());
                           Navigator.pop(context);
                         },
                         color: AppColors.redColor.withOpacity(0.10),

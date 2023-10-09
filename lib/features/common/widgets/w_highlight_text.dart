@@ -38,8 +38,7 @@ class WHighlightedText extends StatelessWidget {
             indexOfHighlight,
             indexOfHighlight + highlight.length,
           ),
-          style: TextStyle(
-              backgroundColor: highlightColor, height: 1.5, wordSpacing: 5),
+          style: TextStyle(backgroundColor: highlightColor, height: 1.5, wordSpacing: 5),
         ),
       );
 
@@ -60,10 +59,10 @@ class WHighlightedText extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       minLeadingWidth: 0,
       onTap: () {
-        context.read<SearchsysBloc>().add(OnSearchResultEvent());
-        context.read<SearchsysBloc>().add(OnPopularSearchEvent(text));
-        context.read<SearchBloc>().add(GetSearchProductsEvent(text));
-        FocusScope.of(context).unfocus();
+        // context.read<SearchsysBloc>().add(OnSearchResultEvent());
+        // context.read<SearchsysBloc>().add(OnPopularSearchEvent(text));
+        // context.read<SearchBloc>().add(GetSearchProductsEvent(text));
+        // FocusScope.of(context).unfocus();
       },
       leading: SvgPicture.asset(
         AppAssets.search,

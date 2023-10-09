@@ -1,13 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/features/common/widgets/w_divider.dart';
 import 'package:onlineshop_77/features/common/widgets/w_modal_sheet_scroller.dart';
 import 'package:onlineshop_77/features/common/widgets/w_selected_item.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/miniCategory/mini_category_bloc.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 class WMiniCategoriesModalSheet extends StatefulWidget {
@@ -15,21 +13,17 @@ class WMiniCategoriesModalSheet extends StatefulWidget {
     super.key,
     required this.value,
   });
+
   final String value;
+
   @override
-  State<WMiniCategoriesModalSheet> createState() =>
-      _WMiniCategoriesModalSheetState();
+  State<WMiniCategoriesModalSheet> createState() => _WMiniCategoriesModalSheetState();
 }
 
 class _WMiniCategoriesModalSheetState extends State<WMiniCategoriesModalSheet> {
-  List categories = [
-    "Все объявления",
-    "Популярные",
-    "Подешевле",
-    "Подороже",
-    "Добавленные недавно"
-  ];
+  List categories = ["Все объявления", "Популярные", "Подешевле", "Подороже", "Добавленные недавно"];
   late String groupValue;
+
   @override
   void initState() {
     super.initState();
@@ -82,9 +76,7 @@ class _WMiniCategoriesModalSheetState extends State<WMiniCategoriesModalSheet> {
                       groupValue: groupValue,
                       onTap: (value) {
                         groupValue = value;
-                        context
-                            .read<MiniCategoryBloc>()
-                            .add(SetCategoryEvent(value));
+                        // context.read<MiniCategoryBloc>().add(SetCategoryEvent(value));
                         setState(() {});
                         Navigator.pop(context);
                       },

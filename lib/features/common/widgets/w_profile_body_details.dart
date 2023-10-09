@@ -5,13 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/core/routers/app_router.dart';
-import 'package:onlineshop_77/features/common/widgets/w_profile_body_items.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
+import 'package:onlineshop_77/features/profile/presentation/widgets/w_profile_body_items.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 class WProfileBodyDetail extends StatelessWidget {
-  const WProfileBodyDetail({
+  WProfileBodyDetail({
     super.key,
   });
+
+  ValueNotifier<bool> switcherListener = ValueNotifier(false);
 
   @override
   Widget build(BuildContext context) {
@@ -22,42 +25,46 @@ class WProfileBodyDetail extends StatelessWidget {
             horizontal: 12,
           ),
           decoration: BoxDecoration(
-              border: Border.all(color: AppColors.backgroundColor),
-              borderRadius: BorderRadius.circular(8)),
+            border: Border.all(color: AppColors.backgroundColor),
+            borderRadius: BorderRadius.circular(8),
+          ),
           child: ListTile(
-            leading: SvgPicture.asset(
-              AppAssets.bell,
-              width: 24,
-              color: AppColors.greyTextColor,
-            ),
+            leading: SvgPicture.asset(AppAssets.bellProfile),
             minLeadingWidth: 0,
             contentPadding: EdgeInsets.zero,
             title: Text(
               LocaleKeys.notification.tr(),
-              style: const TextStyle(fontWeight: FontWeight.w600),
+              style: context.textTheme.headlineLarge!.copyWith(
+                color: AppColors.blackColor,
+              ),
             ),
-            trailing: CupertinoSwitch(
-              value: false,
-              onChanged: (value) {},
+            trailing: ValueListenableBuilder(
+              builder: (BuildContext context, value, Widget? child) {
+                return CupertinoSwitch(
+                  value: value,
+                  onChanged: (value) {
+                    switcherListener.value = value;
+                  },
+                );
+              },
+              valueListenable: switcherListener,
             ),
           ),
         ),
         const SizedBox(
           height: 12,
         ),
-        WProfileBodyItem(
-          onPressed: () =>
-              Navigator.pushNamed(context, Routes.dashboard),
-          svg: AppAssets.file,
+        ProfileActionItem(
+          onPressed: () => Navigator.pushNamed(context, Routes.dashboard),
+          svg: AppAssets.privacy,
           title: LocaleKeys.termsofuse.tr(),
         ),
         const SizedBox(
           height: 12,
         ),
-        WProfileBodyItem(
-          onPressed: () =>
-              Navigator.pushNamed(context, Routes.dashboard),
-          svg: AppAssets.info,
+        ProfileActionItem(
+          onPressed: () => Navigator.pushNamed(context, Routes.dashboard),
+          svg: AppAssets.about,
           title: LocaleKeys.aboutApp.tr(),
         ),
       ],

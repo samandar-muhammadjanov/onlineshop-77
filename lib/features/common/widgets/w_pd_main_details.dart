@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product_detail.dart';
+import 'package:onlineshop_77/features/create_ads/domain/entities/ads_entity.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WPDMainDetails extends StatelessWidget {
@@ -13,7 +11,7 @@ class WPDMainDetails extends StatelessWidget {
     super.key,
     required this.product,
   });
-  final ProductDetail product;
+  final AdsEntity product;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +35,7 @@ class WPDMainDetails extends StatelessWidget {
             ),
             const Gap(),
             Text(
-              product.category.parentCategory["name"],
+              product.category.parentCategory!.name,
               style: const TextStyle(
                 color: AppColors.greyTextColor,
                 fontSize: 12,
@@ -76,7 +74,7 @@ class WPDMainDetails extends StatelessWidget {
                   color: AppColors.greyColor,
                   borderRadius: BorderRadius.circular(6)),
               child: Text(
-                product.publishedAt.formatApiDate(),
+                'product.publishedAt.formatApiDate()',
                 style: const TextStyle(
                   color: AppColors.darkGreyColor,
                   fontSize: 10,
@@ -90,7 +88,7 @@ class WPDMainDetails extends StatelessWidget {
                   color: AppColors.greyColor,
                   borderRadius: BorderRadius.circular(6)),
               child: Text(
-                "г. ${product.address.district.region.name}",
+                "г. product.address.district.region.name",
                 style: const TextStyle(
                   color: AppColors.darkGreyColor,
                   fontSize: 10,
@@ -107,7 +105,7 @@ class WPDMainDetails extends StatelessWidget {
             style: const TextStyle(color: AppColors.blackColor),
             children: [
               TextSpan(
-                text: product.price.formatWithSpaces(),
+                text: 'product.price.formatWithSpaces()',
                 style: const TextStyle(
                   color: AppColors.blackColor,
                   fontSize: 24,
@@ -133,7 +131,7 @@ class WPDMainDetails extends StatelessWidget {
           onPressed: () async {
             final Uri url = Uri(
                 scheme: "tel",
-                path: product.seller.phoneNumber.formatPhoneNumberWithSpaces());
+                path: 'product.seller.phoneNumber.formatPhoneNumberWithSpaces()');
 
             if (await canLaunchUrl(url)) {
               await launchUrl(url);
@@ -145,7 +143,7 @@ class WPDMainDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                product.seller.phoneNumber.formatPhoneNumberWithSpaces(),
+                'product.seller.phoneNumber.formatPhoneNumberWithSpaces()',
                 style:
                     const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),

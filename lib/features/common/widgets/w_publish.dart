@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
 import 'package:onlineshop_77/features/common/widgets/w_cansel_modal_popup.dart';
-import 'package:onlineshop_77/features/home/data/repositories/data_repository.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 class WPublish extends StatefulWidget {
@@ -145,14 +144,14 @@ class _WPublishState extends State<WPublish> {
                   onPressed: () {
                     print(widget.categoryId);
                     if (widget.formKey.currentState!.validate()) {
-                      HomeRepository.addProduct(
-                          widget.productName,
-                          widget.currency,
-                          widget.price,
-                          widget.description,
-                          widget.paths,
-                          widget.categoryId,
-                          context);
+                      // HomeRepository.addProduct(
+                      //     widget.productName,
+                      //     widget.currency,
+                      //     widget.price,
+                      //     widget.description,
+                      //     widget.paths,
+                      //     widget.categoryId,
+                      //     context);
                     }
                   },
                   color: !isAgree ? AppColors.greyColor : null,

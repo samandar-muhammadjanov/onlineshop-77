@@ -16,7 +16,7 @@ class AdsCategoriesEntity extends Equatable {
     this.name = '',
     this.adsCount = 0,
     this.icon = '',
-    this.parentCategory = const AdsCategoriesEntity(),
+    this.parentCategory,
   });
 
   bool isNotEmpty() => id != 0 && name.isNotEmpty && adsCount != 0 && icon.isNotEmpty;

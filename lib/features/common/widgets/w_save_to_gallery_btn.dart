@@ -6,7 +6,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
 import 'package:onlineshop_77/features/common/widgets/w_product_item_for_galery.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product_detail.dart';
+import 'package:onlineshop_77/features/create_ads/domain/entities/ads_entity.dart';
 import 'package:screenshot/screenshot.dart';
 
 class WSaveToGalleryBtn extends StatelessWidget {
@@ -14,7 +14,9 @@ class WSaveToGalleryBtn extends StatelessWidget {
     super.key,
     required this.item,
   });
-  final ProductDetail item;
+
+  final AdsEntity item;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,14 +25,10 @@ class WSaveToGalleryBtn extends StatelessWidget {
         onPressed: () async {
           final controller = ScreenshotController();
           final bytes = await controller.captureFromWidget(Material(
-            child: SizedBox(
-                width: 166,
-                height: 280,
-                child: WProductItemForGallery(item: item)),
+            child: SizedBox(width: 166, height: 280, child: WProductItemForGallery(item: item)),
           ));
 
-          final result =
-              await ImageGallerySaver.saveImage(Uint8List.fromList(bytes));
+          final result = await ImageGallerySaver.saveImage(Uint8List.fromList(bytes));
           if (result != null) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
@@ -51,9 +49,7 @@ class WSaveToGalleryBtn extends StatelessWidget {
           children: [
             const Text(
               "Скачать в галерею",
-              style: TextStyle(
-                  color: AppColors.primaryColor,
-                  fontWeight: FontWeight.w600),
+              style: TextStyle(color: AppColors.primaryColor, fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               width: 8,

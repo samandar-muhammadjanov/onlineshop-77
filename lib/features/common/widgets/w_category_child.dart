@@ -29,10 +29,9 @@ class _WCategoryChildState extends State<WCategoryChild> {
 
   @override
   Widget build(BuildContext context) {
-    final childChild = (widget.state.categories[widget.categoryIndex]
-        .childs[categoryIndex].childs as List);
-    final child = widget.state.categories[widget.categoryIndex];
-
+    // final childChild = (widget.state.categories[widget.categoryIndex]
+    //     .childs[categoryIndex].childs as List);
+    // final child = widget.state.categories[widget.categoryIndex];
     return !isParentCategory
         ? Padding(
             padding: const EdgeInsets.all(16.0),
@@ -49,7 +48,7 @@ class _WCategoryChildState extends State<WCategoryChild> {
                       width: 8,
                     ),
                     Text(
-                      child.name,
+                      'child.name',
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w700,
@@ -65,39 +64,40 @@ class _WCategoryChildState extends State<WCategoryChild> {
                     color: AppColors.whiteColor,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: child.childs.length,
-                    itemBuilder: (context, index) {
-                      final item = child.childs[index];
-                      if (item.childs == null) {
-                        return const SizedBox();
-                      }
-                      return ListTile(
-                        onTap: () => _routeToChild(true, index),
-                        title: Text(
-                          item.name,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        trailing: SvgPicture.asset(
-                          AppAssets.chevronRight,
-                        ),
-                      );
-                    },
-                  ),
+                  // child:
+                  // ListView.builder(
+                  //   shrinkWrap: true,
+                  //   physics: const NeverScrollableScrollPhysics(),
+                  //   itemCount: child.childs.length,
+                  //   itemBuilder: (context, index) {
+                  //     final item = child.childs[index];
+                  //     if (item.childs == null) {
+                  //       return const SizedBox();
+                  //     }
+                  //     return ListTile(
+                  //       onTap: () => _routeToChild(true, index),
+                  //       title: Text(
+                  //         item.name,
+                  //         style: const TextStyle(
+                  //           fontWeight: FontWeight.w500,
+                  //         ),
+                  //       ),
+                  //       trailing: SvgPicture.asset(
+                  //         AppAssets.chevronRight,
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
                 ),
               ],
             ),
           )
         : WCategoryChildChild(
-            title: child.name,
+            title: "child.name",
             parentRoute: widget.routeToChild,
             widget: widget,
             categoryIndex: categoryIndex,
-            childChild: childChild,
+            // childChild: childChild,
             childRoute: _routeToChild,
           );
   }

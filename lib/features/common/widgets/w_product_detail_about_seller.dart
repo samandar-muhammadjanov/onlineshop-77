@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/features/common/widgets/w_product_detail_seller_phone.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product_detail.dart';
+import 'package:onlineshop_77/features/profile/domain/entities/user_entity.dart';
 import '../../../../generated/locale_keys.g.dart';
 
 class WPDAboutSeller extends StatelessWidget {
@@ -11,7 +11,7 @@ class WPDAboutSeller extends StatelessWidget {
     super.key,
     required this.seller,
   });
-  final Seller seller;
+  final UserEntity seller;
   @override
   Widget build(BuildContext context) {
     return Container(

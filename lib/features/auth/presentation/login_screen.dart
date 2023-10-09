@@ -5,6 +5,7 @@ import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/core/routers/app_router.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/auth/data/datasource/auth_datasource.dart';
 import 'package:onlineshop_77/features/auth/presentation/registration_screen.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_custom_button.dart';
@@ -14,7 +15,7 @@ import 'package:onlineshop_77/features/auth/presentation/widgets/w_text_field.da
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 import 'widgets/w_forgot_password.dart';
-import 'widgets/w_login_intro.dart';
+import 'widgets/intro_header_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -63,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              LoginIntroductionWidget(text: LocaleKeys.welcome.tr()),
+              IntroHeaderWidget(text: LocaleKeys.welcome.tr()),
               TextFieldWithTitle(
                 controller: loginController,
                 title: LocaleKeys.login.tr(),
@@ -111,18 +112,22 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Divider(),
+                  const Expanded(child: Divider(color: AppColors.hintColor)),
+                  const SizedBox(width: 8),
                   Text(
                     LocaleKeys.wannabeSeller.tr(),
-                    style: const TextStyle(color: AppColors.darkGreyColor, fontSize: 12),
+                    style: context.textTheme.labelMedium!.copyWith(
+                      color: AppColors.greyTextColor,
+                    ),
                   ),
-                  const Divider(),
+                  const SizedBox(width: 8),
+                  const Expanded(child: Divider(color: AppColors.hintColor)),
                 ],
               ),
               const WGap(height: 8),
               WCustomButton(
                 text: LocaleKeys.signIn.tr(),
-                onPressed: () => Navigator.pushReplacementNamed(context, Routes.dashboard),
+                onPressed: () => Navigator.pushReplacementNamed(context, Routes.signIn),
                 hasBorder: true,
               )
             ],

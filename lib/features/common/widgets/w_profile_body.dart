@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/core/routers/app_router.dart';
 import 'package:onlineshop_77/features/common/widgets/w_profile_body_details.dart';
-import 'package:onlineshop_77/features/common/widgets/w_profile_body_items.dart';
+import 'package:onlineshop_77/features/profile/presentation/widgets/w_profile_body_items.dart';
 
 import '../../../../generated/locale_keys.g.dart';
 
@@ -22,7 +22,7 @@ class WProfileBody extends StatelessWidget {
         GestureDetector(
           onTap: () =>
               Navigator.pushNamed(context, Routes.dashboard),
-          child: WProfileBodyItem(
+          child: ProfileActionItem(
             svg: AppAssets.userProfile,
             title: LocaleKeys.personalInfo.tr(),
           ),
@@ -32,7 +32,7 @@ class WProfileBody extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () => Navigator.pushNamed(context, Routes.dashboard),
-          child: WProfileBodyItem(
+          child: ProfileActionItem(
             svg: AppAssets.grid,
             title: LocaleKeys.myProducts.tr(),
           ),
@@ -40,7 +40,7 @@ class WProfileBody extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-        const WProfileBodyDetail(),
+        WProfileBodyDetail(),
       ],
     );
   }

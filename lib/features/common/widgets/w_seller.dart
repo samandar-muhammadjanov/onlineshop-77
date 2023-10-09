@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_elevated_button.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/productBloc/product_bloc.dart';
+import 'package:onlineshop_77/features/profile/domain/entities/user_entity.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../home/data/model/m_my_products.dart';
 
 class WSellerData extends StatelessWidget {
   const WSellerData({
@@ -17,7 +14,7 @@ class WSellerData extends StatelessWidget {
     required this.seller,
   });
 
-  final Seller seller;
+  final UserEntity seller;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +33,7 @@ class WSellerData extends StatelessWidget {
               GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
-                    context.read<ProductBloc>().add(GetProductsEvent(""));
+                    // context.read<ProductBloc>().add(GetProductsEvent(""));
                   },
                   child: SvgPicture.asset(AppAssets.arrowLeft)),
               const SizedBox(width: 16),
@@ -56,8 +53,7 @@ class WSellerData extends StatelessWidget {
                         ),
                   title: Text(
                     seller.fullName,
-                    style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.w600),
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                   subtitle: Text(
                     "ID: ${seller.id}",
@@ -69,9 +65,7 @@ class WSellerData extends StatelessWidget {
           ),
           WElevatedButton(
             onPressed: () async {
-              final Uri url = Uri(
-                  scheme: "tel",
-                  path: seller.phoneNumber.formatPhoneNumberWithSpaces());
+              final Uri url = Uri(scheme: "tel", path: 'seller.phoneNumber.formatPhoneNumberWithSpaces()');
 
               if (await canLaunchUrl(url)) {
                 await launchUrl(url);
@@ -87,9 +81,8 @@ class WSellerData extends StatelessWidget {
                   width: 8,
                 ),
                 Text(
-                  seller.phoneNumber.formatPhoneNumberWithSpaces(),
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w600),
+                  'seller.phoneNumber.formatPhoneNumberWithSpaces()',
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                 ),
               ],
             ),

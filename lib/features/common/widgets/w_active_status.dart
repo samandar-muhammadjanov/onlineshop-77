@@ -4,7 +4,7 @@ import 'package:onlineshop_77/assets/constants/app_colors.dart';
 
 class WActiveStatus extends StatelessWidget {
   const WActiveStatus({super.key, required this.date});
-  final DateTime date;
+  final String date;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +31,7 @@ class WActiveStatus extends StatelessWidget {
                 color: AppColors.whiteColor,
                 borderRadius: BorderRadius.circular(3)),
             child: Text(
-              "до ${DateFormat("dd.MM.yyyy").format(date)}",
+              "до $date",
               style: const TextStyle(
                   color: AppColors.orangeColor,
                   fontSize: 10,

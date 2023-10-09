@@ -1,12 +1,13 @@
+import 'package:formz/formz.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/features/home/data/model/m_regions.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/region/regions_bloc.dart';
+import 'package:onlineshop_77/features/home/doman/entity/district_entity.dart';
+import 'package:onlineshop_77/features/home/doman/entity/region_entity.dart';
+import 'package:onlineshop_77/features/search/presentation/blocs/search_bloc.dart';
 
 class WRegions extends StatefulWidget {
   const WRegions({
@@ -18,9 +19,10 @@ class WRegions extends StatefulWidget {
 }
 
 class _WRegionsState extends State<WRegions> {
-  List<District> districts = [];
+  List<DistrictEntity> districts = [];
   String? selectedRegion;
   String? selectedDistrict;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,15 +30,14 @@ class _WRegionsState extends State<WRegions> {
       children: [
         const Text(
           "Регион",
-          style: TextStyle(
-              color: AppColors.darkGreyColor, fontWeight: FontWeight.w500),
+          style: TextStyle(color: AppColors.darkGreyColor, fontWeight: FontWeight.w500),
         ),
         const SizedBox(
           height: 8,
         ),
-        BlocBuilder<RegionsBloc, RegionsState>(
+        BlocBuilder<SearchBloc, SearchState>(
           builder: (context, state) {
-            if (state is RegionsLoaded) {
+            if (state.status.isSuccess) {
               return DropdownButtonHideUnderline(
                 child: DropdownButton2<dynamic>(
                   isExpanded: true,
@@ -53,9 +54,9 @@ class _WRegionsState extends State<WRegions> {
                       ),
                     ],
                   ),
-                  items: state.regions
+                  items: state.regionEntity
                       .map(
-                        (Regions item) => DropdownMenuItem<dynamic>(
+                        (RegionEntity item) => DropdownMenuItem<dynamic>(
                           value: item.name,
                           child: Text(
                             item.name,
@@ -71,8 +72,7 @@ class _WRegionsState extends State<WRegions> {
                       .toList(),
                   value: selectedRegion,
                   onChanged: (value) {
-                    var region = state.regions
-                        .firstWhere((element) => element.name == value);
+                    var region = state.regionEntity.firstWhere((element) => element.name == value);
                     selectedDistrict = null;
                     districts = region.districts;
                     selectedRegion = value;
@@ -111,8 +111,7 @@ class _WRegionsState extends State<WRegions> {
                     elevation: 0,
                     offset: const Offset(0, -10),
                     scrollbarTheme: ScrollbarThemeData(
-                      thumbColor:
-                          MaterialStateProperty.all(AppColors.greyColor),
+                      thumbColor: MaterialStateProperty.all(AppColors.greyColor),
                       radius: const Radius.circular(40),
                       thickness: MaterialStateProperty.all(6),
                       thumbVisibility: MaterialStateProperty.all(true),
@@ -124,12 +123,6 @@ class _WRegionsState extends State<WRegions> {
                   ),
                 ),
               );
-            } else if (state is RegionsInitial) {
-              return const SizedBox();
-            } else if (state is RegionsLoading) {
-              return const SizedBox();
-            } else if (state is RegionsError) {
-              return Text(state.error);
             } else {
               return const SizedBox();
             }
@@ -140,8 +133,7 @@ class _WRegionsState extends State<WRegions> {
         ),
         const Text(
           "Район/город",
-          style: TextStyle(
-              color: AppColors.darkGreyColor, fontWeight: FontWeight.w500),
+          style: TextStyle(color: AppColors.darkGreyColor, fontWeight: FontWeight.w500),
         ),
         const SizedBox(
           height: 8,
@@ -164,7 +156,7 @@ class _WRegionsState extends State<WRegions> {
             ),
             items: districts
                 .map(
-                  (District item) => DropdownMenuItem<dynamic>(
+                  (item) => DropdownMenuItem<dynamic>(
                     value: item.name,
                     child: Text(
                       item.name,

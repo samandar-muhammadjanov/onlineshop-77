@@ -8,7 +8,7 @@ import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
 import 'package:onlineshop_77/core/utils/size_config.dart';
 import 'package:onlineshop_77/features/auth/data/datasource/auth_datasource.dart';
-import 'package:onlineshop_77/features/auth/presentation/widgets/w_login_intro.dart';
+import 'package:onlineshop_77/features/auth/presentation/widgets/intro_header_widget.dart';
 
 import '../../../generated/locale_keys.g.dart';
 import 'widgets/w_registration_buttons.dart';
@@ -24,7 +24,6 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
       appBar: AppBar(
@@ -36,24 +35,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           ),
         ),
       ),
+      resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
-        padding: EdgeInsets.fromLTRB(16, 16, 16, MediaQuery.of(context).viewInsets.bottom + 16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LoginIntroductionWidget(
+            IntroHeaderWidget(
               text: LocaleKeys.signIn.tr(),
             ),
-            // WRegistrationForm(
-            //   formKey: _formKey,
-            //   getUserData: _getUserData,
-            // ),
-            const Spacer(),
-            // WRegistrationButtons(
-            //   formKey: _formKey,
-            //   userData: _userData,
-            //   sumit: _submit,
-            // )
+            const WRegistrationForm(),
+            // const Spacer(),
+            const WRegistrationButtons()
           ],
         ),
       ),

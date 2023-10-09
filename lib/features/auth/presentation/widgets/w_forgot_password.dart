@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
 class WForgotPassword extends StatelessWidget {
@@ -16,7 +17,9 @@ class WForgotPassword extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Text(
           LocaleKeys.forgotPassword.tr(),
-          style: const TextStyle(color: AppColors.primaryColor),
+          style: context.textTheme.bodySmall!.copyWith(
+            color: AppColors.primaryColor,
+          ),
         ),
       ),
     );

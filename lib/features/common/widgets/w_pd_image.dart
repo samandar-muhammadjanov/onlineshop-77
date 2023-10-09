@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/features/common/widgets/w_pd_image_detail.dart';
 import 'package:onlineshop_77/features/common/widgets/w_pd_main_details.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product_detail.dart';
+import 'package:onlineshop_77/features/create_ads/domain/entities/ads_entity.dart';
 
 class WProductImages extends StatelessWidget {
   const WProductImages({
@@ -10,7 +10,7 @@ class WProductImages extends StatelessWidget {
     required this.product,
   });
 
-  final ProductDetail product;
+  final AdsEntity product;
 
   @override
   Widget build(BuildContext context) {

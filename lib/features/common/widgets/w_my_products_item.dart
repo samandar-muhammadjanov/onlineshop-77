@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/categories/presentation/pages/product_detail_screen.dart';
 import 'package:onlineshop_77/features/common/widgets/w_active_status.dart';
 import 'package:onlineshop_77/features/common/widgets/w_pending_status.dart';
 import 'package:onlineshop_77/features/common/widgets/w_unactive_status.dart';
-import 'package:onlineshop_77/features/home/data/model/m_my_products.dart';
+import 'package:onlineshop_77/features/create_ads/domain/entities/ads_entity.dart';
 
 class WMyProductItem extends StatelessWidget {
   const WMyProductItem({
@@ -13,7 +12,7 @@ class WMyProductItem extends StatelessWidget {
     required this.item,
   });
 
-  final MyProducts item;
+  final AdsEntity item;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +75,7 @@ class WMyProductItem extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(color: AppColors.backgroundColor, borderRadius: BorderRadius.circular(6)),
                     child: Text(
-                      item.address.district.region.name,
+                      'item.address.district.region.name',
                       style: const TextStyle(
                         color: AppColors.darkGreyColor,
                         fontSize: 10,
@@ -92,12 +91,12 @@ class WMyProductItem extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    item.publishedAt.formatApiDate(),
+                    item.publishedAt,
                     style: const TextStyle(fontSize: 10, color: AppColors.darkGreyColor),
                   ),
                   const Gap(),
                   Text(
-                    item.seller.phoneNumber.formatPhoneNumberWithSpaces(),
+                    'item.seller.phoneNumber',
                     style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.darkGreyColor,
@@ -110,7 +109,7 @@ class WMyProductItem extends StatelessWidget {
                       style: const TextStyle(color: AppColors.blackColor),
                       children: [
                         TextSpan(
-                          text: "${item.price.formatWithSpaces()}  ",
+                          text: "item.price.formatWithSpaces()",
                           style: const TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,

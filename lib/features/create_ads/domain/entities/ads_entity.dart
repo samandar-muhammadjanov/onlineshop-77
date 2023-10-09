@@ -3,7 +3,7 @@ import 'package:onlineshop_77/features/create_ads/domain/entities/ads_category_e
 import 'package:onlineshop_77/features/create_ads/domain/entities/extra_entity.dart';
 
 class AdsEntity extends Equatable {
-  final String id;
+  final int id;
 
   final String name;
 
@@ -31,7 +31,7 @@ class AdsEntity extends Equatable {
 
   const AdsEntity({
     this.extra = const ExtraEntity(),
-    this.id = '',
+    this.id = 0,
     this.name = '',
     this.slug = '',
     this.category = const AdsCategoriesEntity(),

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:formz/formz.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_gap.dart';
 import 'package:onlineshop_77/features/categories/presentation/blocs/categories_bloc.dart';
@@ -33,18 +34,11 @@ class WPopularCategoriesCard extends StatelessWidget {
         ),
         BlocBuilder<CategoriesBloc, CategoriesState>(
           builder: (context, state) {
-            if (state is CategoriesInitial) {
-              return const WPopularCategoriesShimmer();
-            } else if (state is CategoriesLoading) {
-              return const WPopularCategoriesShimmer();
-            } else if (state is CategoriesError) {
-              return Text(state.error);
-            } else if (state is CategoriesLoaded) {
+            if (state.status.isSuccess) {
               return SizedBox(
                 height: 64,
                 child: ListView.separated(
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 8),
+                  separatorBuilder: (context, index) => const SizedBox(width: 8),
                   physics: const BouncingScrollPhysics(),
                   padding: const EdgeInsets.only(left: 16),
                   scrollDirection: Axis.horizontal,
@@ -72,8 +66,7 @@ class WPopularCategoriesCard extends StatelessWidget {
                             borderRadius: BorderRadius.circular(8),
                             color: AppColors.primaryColor,
                             border: Border.all(
-                              color:
-                                  AppColors.primaryColor.withOpacity(0.016),
+                              color: AppColors.primaryColor.withOpacity(0.016),
                             ),
                           ),
                           child: Padding(
@@ -94,8 +87,9 @@ class WPopularCategoriesCard extends StatelessWidget {
                   },
                 ),
               );
+            } else {
+              return const WPopularCategoriesShimmer();
             }
-            return const WPopularCategoriesShimmer();
           },
         ),
       ],

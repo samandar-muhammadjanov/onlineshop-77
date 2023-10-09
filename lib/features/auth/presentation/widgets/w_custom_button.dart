@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/assets/constants/constants.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 
 class WCustomButton extends StatelessWidget {
   WCustomButton({
@@ -34,9 +35,7 @@ class WCustomButton extends StatelessWidget {
                 height: 44,
                 decoration: BoxDecoration(
                   color: (hasBorder) ? null : AppColors.primaryColor,
-                  border: (hasBorder)
-                      ? Border.all(color: AppColors.primaryColor)
-                      : null,
+                  border: (hasBorder) ? Border.all(color: AppColors.primaryColor) : null,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(8),
                   ),
@@ -44,11 +43,7 @@ class WCustomButton extends StatelessWidget {
                 child: Center(
                   child: Text(
                     text,
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: hasBorder
-                            ? AppColors.primaryColor
-                            : AppColors.whiteColor),
+                    style: TextStyle(fontSize: 16, color: hasBorder ? AppColors.primaryColor : AppColors.whiteColor),
                   ),
                 ),
               ),
@@ -65,9 +60,7 @@ class WCustomButton extends StatelessWidget {
               height: 44,
               decoration: BoxDecoration(
                 color: (hasBorder) ? null : AppColors.greyColor,
-                border: (hasBorder)
-                    ? Border.all(color: AppColors.primaryColor)
-                    : null,
+                border: (hasBorder) ? Border.all(color: AppColors.primaryColor) : null,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(8),
                 ),
@@ -75,12 +68,9 @@ class WCustomButton extends StatelessWidget {
               child: Center(
                 child: Text(
                   text,
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: hasBorder
-                          ? AppColors.primaryColor
-                          : AppColors.blackColor),
+                  style: context.textTheme.labelLarge!.copyWith(
+                    color: hasBorder ? AppColors.primaryColor : AppColors.blackColor,
+                  ),
                 ),
               ),
             ),

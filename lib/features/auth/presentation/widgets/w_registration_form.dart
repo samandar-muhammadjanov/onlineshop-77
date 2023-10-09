@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_select_category.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_text_field.dart';
 import 'package:onlineshop_77/features/common/widgets/gap16.dart';
@@ -19,6 +20,7 @@ class WRegistrationForm extends StatefulWidget {
 }
 
 class _WRegistrationFormState extends State<WRegistrationForm> {
+
   final MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
       mask: '(##) ###-##-##', filter: {"#": RegExp(r'[0-9]')}, type: MaskAutoCompletionType.lazy);
   final TextEditingController fullNameCtrl = TextEditingController();
@@ -58,10 +60,14 @@ class _WRegistrationFormState extends State<WRegistrationForm> {
           controller: phoneNumberCtrl,
           title: LocaleKeys.phoneNumber.tr(),
           keyboardType: TextInputType.number,
-          prefix: const Padding(
-            padding: EdgeInsets.fromLTRB(10, 15, 0, 0),
-            child: Text("+998"),
-          ),
+          prefix: Center(
+              child: Padding(
+            padding: const EdgeInsets.only(bottom: 2),
+            child: Text(
+              "+998",
+              style: context.textTheme.bodySmall,
+            ),
+          )),
           hint: "(__) ___-__-__",
           inputFormatters: [maskFormatter],
         ),

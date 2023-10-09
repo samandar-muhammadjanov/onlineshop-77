@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/core/utils/extentions.dart';
-import 'package:onlineshop_77/features/home/data/model/m_user_data.dart';
-
-import '../../../../assets/constants/constants.dart';
+import 'package:onlineshop_77/features/profile/domain/entities/user_entity.dart';
 
 class WUserOtherData extends StatelessWidget {
   const WUserOtherData({
@@ -13,7 +10,7 @@ class WUserOtherData extends StatelessWidget {
     required this.item,
   });
 
-  final UserData item;
+  final UserEntity item;
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +37,8 @@ class WUserOtherData extends StatelessWidget {
                 width: 8,
               ),
               Text(
-                item.phoneNumber.formatPhoneNumberWithSpaces(),
-                style:
-                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                'item.phoneNumber.formatPhoneNumberWithSpaces()',
+                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
               )
             ],
           ),
@@ -68,8 +64,7 @@ class WUserOtherData extends StatelessWidget {
               ),
               Text(
                 item.address.name,
-                style:
-                    const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
               )
             ],
           ),

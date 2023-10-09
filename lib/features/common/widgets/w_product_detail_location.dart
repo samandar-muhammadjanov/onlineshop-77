@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/assets/constants/constants.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product_detail.dart';
+import 'package:onlineshop_77/features/profile/domain/entities/address_entity.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart' as placemark;
@@ -14,7 +13,8 @@ class WPDLocation extends StatefulWidget {
     super.key,
     required this.address,
   });
-  final Address address;
+
+  final AddressEntity address;
 
   @override
   State<WPDLocation> createState() => _WPDLocationState();
@@ -22,6 +22,7 @@ class WPDLocation extends StatefulWidget {
 
 class _WPDLocationState extends State<WPDLocation> {
   placemark.Polyline? lastPlaceMark;
+
   @override
   Widget build(BuildContext context) {
     final address = widget.address;
@@ -49,7 +50,7 @@ class _WPDLocationState extends State<WPDLocation> {
                   width: 8,
                 ),
                 Text(
-                  widget.address.district.region.name,
+                  'widget.address.district.region.name',
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/categories/presentation/pages/product_detail_screen.dart';
 import 'package:onlineshop_77/features/common/widgets/w_favorite_button.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product.dart';
+import 'package:onlineshop_77/features/create_ads/domain/entities/ads_entity.dart';
+import 'package:onlineshop_77/features/favorites/domain/entities/favorite_entity.dart';
 
 class WProductItem extends StatelessWidget {
   const WProductItem({
@@ -11,7 +11,7 @@ class WProductItem extends StatelessWidget {
     required this.item,
   });
 
-  final Result item;
+  final FavoritesEntity item;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class WProductItem extends StatelessWidget {
                 child: Stack(
                   children: [
                     Image.network(
-                      "https://backendmaster.pythonanywhere.com/${item.photos.first}",
+                      item.photo,
                       height: 130,
                       fit: BoxFit.cover,
                       width: double.maxFinite,
@@ -63,7 +63,12 @@ class WProductItem extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Positioned(right: 10, top: 5, child: WFavoriteButton(item: item))
+                    Positioned(
+                        right: 10,
+                        top: 5,
+                        child: WFavoriteButton(
+                          adsEntity: item,
+                        ))
                   ],
                 ),
               ),
@@ -87,7 +92,7 @@ class WProductItem extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(color: AppColors.backgroundColor, borderRadius: BorderRadius.circular(6)),
                     child: Text(
-                      item.address.district.region.name,
+                      'item.address.district.region.name',
                       style: const TextStyle(
                         color: AppColors.darkGreyColor,
                         fontSize: 10,
@@ -103,12 +108,12 @@ class WProductItem extends StatelessWidget {
                     style: const TextStyle(fontWeight: FontWeight.w600),
                   ),
                   Text(
-                    item.publishedAt.formatApiDate(),
+                    'item.publishedAt.formatApiDate',
                     style: const TextStyle(fontSize: 10, color: AppColors.darkGreyColor),
                   ),
                   const Gap(),
                   Text(
-                    item.seller.phoneNumber.formatPhoneNumberWithSpaces(),
+                    'item.seller.phoneNumber.formatPhoneNumberWithSpaces()',
                     style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.darkGreyColor,
@@ -121,7 +126,7 @@ class WProductItem extends StatelessWidget {
                       style: const TextStyle(color: AppColors.blackColor),
                       children: [
                         TextSpan(
-                          text: "${item.price.formatWithSpaces()}  ",
+                          text: "item.price",
                           style: const TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
-import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/categories/presentation/pages/product_detail_screen.dart';
 import 'package:onlineshop_77/features/common/widgets/w_favorite_button.dart';
-import 'package:onlineshop_77/features/home/data/model/m_product.dart';
+import 'package:onlineshop_77/features/create_ads/domain/entities/ads_entity.dart';
 
 class WHorizontalProductItem extends StatelessWidget {
   const WHorizontalProductItem({super.key, required this.item});
-  final Result item;
+
+  final AdsEntity item;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -18,9 +19,7 @@ class WHorizontalProductItem extends StatelessWidget {
         ),
       ),
       child: Container(
-        decoration: BoxDecoration(
-            color: AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(12)),
+        decoration: BoxDecoration(color: AppColors.whiteColor, borderRadius: BorderRadius.circular(12)),
         height: 127,
         child: Row(
           children: [
@@ -60,19 +59,19 @@ class WHorizontalProductItem extends StatelessWidget {
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
                           end: Alignment.center,
-                          colors: [
-                            const Color(0xff17181A).withOpacity(0.72),
-                            Colors.transparent
-                          ],
+                          colors: [const Color(0xff17181A).withOpacity(0.72), Colors.transparent],
                         ),
                       ),
                     ),
                   ),
-                  Positioned(
-                    top: 10,
-                    left: 10,
-                    child: WFavoriteButton(item: item),
-                  )
+                  // Positioned(
+                  //   top: 10,
+                  //   left: 10,
+                  //   child:
+                  //   WFavoriteButton(
+                  //     adsEntity: item,
+                  //   ),
+                  // )
                 ],
               ),
             ),
@@ -85,13 +84,11 @@ class WHorizontalProductItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 4),
-                        decoration: BoxDecoration(
-                            color: AppColors.backgroundColor,
-                            borderRadius: BorderRadius.circular(6)),
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        decoration:
+                            BoxDecoration(color: AppColors.backgroundColor, borderRadius: BorderRadius.circular(6)),
                         child: Text(
-                          "р. ${item.address.district.name}",
+                          "р. ${item.address}",
                           style: const TextStyle(
                             color: AppColors.darkGreyColor,
                             fontSize: 10,
@@ -114,9 +111,8 @@ class WHorizontalProductItem extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    item.publishedAt.formatApiDate(),
-                    style: const TextStyle(
-                        fontSize: 10, color: AppColors.darkGreyColor),
+                    item.publishedAt,
+                    style: const TextStyle(fontSize: 10, color: AppColors.darkGreyColor),
                   ),
                   const SizedBox(
                     height: 8,
@@ -126,7 +122,7 @@ class WHorizontalProductItem extends StatelessWidget {
                       style: const TextStyle(color: AppColors.blackColor),
                       children: [
                         TextSpan(
-                          text: "${item.price.formatWithSpaces()}  ",
+                          text: item.price,
                           style: const TextStyle(
                             color: AppColors.blackColor,
                             fontSize: 16,

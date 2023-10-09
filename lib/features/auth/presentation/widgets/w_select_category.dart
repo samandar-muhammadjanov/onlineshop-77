@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
+import 'package:onlineshop_77/core/utils/extentions.dart';
 import 'package:onlineshop_77/features/auth/presentation/widgets/w_category_modalpopup.dart';
 import 'package:onlineshop_77/generated/locale_keys.g.dart';
 
@@ -27,9 +28,9 @@ class _WSelectCategoryState extends State<WSelectCategory> {
       children: [
         Text(
           LocaleKeys.category.tr(),
-          style: const TextStyle(
-            color: AppColors.darkGreyColor,
+          style: context.textTheme.bodySmall!.copyWith(
             fontWeight: FontWeight.w500,
+            color: AppColors.darkGreyColor,
           ),
         ),
         const Gap(),
@@ -38,7 +39,7 @@ class _WSelectCategoryState extends State<WSelectCategory> {
             showModalBottomSheet(
               context: context,
               backgroundColor: AppColors.transparent,
-              builder: (context) => WCategoryModalPopup(),
+              builder: (context) => const WCategoryModalPopup(),
             );
           },
           child: Container(
@@ -53,13 +54,10 @@ class _WSelectCategoryState extends State<WSelectCategory> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // BlocBuilder<CategoryBloc, CategoryState>(
-                //   builder: (context, state) {
-                //     return Text(
-                //       state.name == "" ? value : state.name,
-                //     );
-                //   },
-                // ),
+                Text(
+                  'Выберите категорию',
+                  style: context.textTheme.bodySmall,
+                ),
                 SvgPicture.asset(AppAssets.chevronDown)
               ],
             ),

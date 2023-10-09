@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:formz/formz.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/features/categories/presentation/blocs/categories_bloc.dart';
 import 'package:onlineshop_77/features/common/widgets/w_podcategories_parent.dart';
@@ -29,7 +30,7 @@ class _WPodCategoriesState extends State<WPodCategories> {
         ),
         BlocBuilder<CategoriesBloc, CategoriesState>(
           builder: (context, state) {
-            if (state is CategoriesLoaded) {
+            if (state.status.isSuccess) {
               return WPodCategoriesParent(categories: state.categories);
             } else {
               return const SizedBox();

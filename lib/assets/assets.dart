@@ -8,11 +8,9 @@ class AppAssets {
   static const String errorInfo = "assets/icons/error_info.svg";
   static const String eyeClosed = "assets/icons/eye-closed.svg";
   static const String eyeOpen = "assets/icons/eye-open.svg";
-  static const String file = "assets/icons/file-02.svg";
   static const String grid = "assets/icons/grid-01.svg";
   static const String heart = "assets/icons/heart.svg";
   static const String home = "assets/icons/home.svg";
-  static const String info = "assets/icons/information-circle-contained.svg";
   static const String list = "assets/icons/list.svg";
   static const String logo = "assets/icons/logo.svg";
   static const String logout = "assets/icons/logout.svg";
@@ -51,4 +49,12 @@ class AppAssets {
   static const String checkoff = "assets/icons/offcheck.svg";
   static const String check = "assets/icons/check.svg";
   static const String minus = "assets/icons/minus.svg";
+
+
+  static const String about = "assets/icons/about.svg";
+  static const String bellProfile = "assets/icons/bell_profile.svg";
+  static const String myAds = "assets/icons/my_ads.svg";
+  static const String personal = "assets/icons/personal.svg";
+  static const String privacy = "assets/icons/privacy_profile.svg";
+
 }

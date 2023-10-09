@@ -1,7 +1,8 @@
+import 'package:formz/formz.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/user/user_bloc.dart';
+import 'package:onlineshop_77/features/profile/presentation/blocs/profile/user_bloc.dart';
 import 'package:shimmer/shimmer.dart';
 
 class WProfileHeader extends StatelessWidget {
@@ -16,7 +17,7 @@ class WProfileHeader extends StatelessWidget {
       create: (context) => UserBloc()..add(GetUserDataEvent()),
       child: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
-          if (state is UserLoaded) {
+          if (state.status.isSuccess) {
             return Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
@@ -43,7 +44,7 @@ class WProfileHeader extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(50),
                       child: Image.network(
-                        state.userData.profilePhoto,
+                        state.userEntity.profilePhoto,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -52,7 +53,7 @@ class WProfileHeader extends StatelessWidget {
                     height: 12,
                   ),
                   Text(
-                    state.userData.fullName,
+                    state.userEntity.fullName,
                     style: const TextStyle(
                         fontSize: 16, fontWeight: FontWeight.w700),
                   ),

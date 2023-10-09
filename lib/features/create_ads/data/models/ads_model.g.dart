@@ -7,11 +7,7 @@ part of 'ads_model.dart';
 // **************************************************************************
 
 AdsModel _$AdsModelFromJson(Map<String, dynamic> json) => AdsModel(
-      extra: json['extra'] == null
-          ? const ExtraEntity()
-          : const ExtraConverter()
-              .fromJson(json['extra'] as Map<String, dynamic>),
-      id: json['id'] as String? ?? '',
+      id: json['id'] as int? ?? 0,
       name: json['name'] as String? ?? '',
       slug: json['slug'] as String? ?? '',
       category: json['category'] == null
@@ -28,6 +24,10 @@ AdsModel _$AdsModelFromJson(Map<String, dynamic> json) => AdsModel(
               ?.map((e) => e as String)
               .toList() ??
           const [],
+      extra: json['extra'] == null
+          ? const ExtraEntity()
+          : const ExtraConverter()
+              .fromJson(json['extra'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AdsModelToJson(AdsModel instance) => <String, dynamic>{

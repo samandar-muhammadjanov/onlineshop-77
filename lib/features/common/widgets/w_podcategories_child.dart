@@ -3,11 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:onlineshop_77/assets/assets.dart';
 import 'package:onlineshop_77/assets/constants/app_colors.dart';
 import 'package:onlineshop_77/features/common/widgets/w_podcategories_child_child.dart';
-import 'package:onlineshop_77/features/categories/data/models/caregories_model.dart';
+import '../../categories/domain/entities/categories_child_entity.dart';
 
 class WPodCategoriesChild extends StatelessWidget {
   const WPodCategoriesChild({super.key, required this.category});
-  final CategoryChild category;
+
+  final CategoriesChildEntity category;
+
   @override
   Widget build(BuildContext context) {
     return ExpansionTile(
@@ -48,7 +50,7 @@ class WPodCategoriesChild extends StatelessWidget {
           : List.generate(
               (category.childs as List).length,
               (index) {
-                final categoryChildChild = category.childs[index];
+                final categoryChildChild = category.childs![index];
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(60, 0, 0, 0),
                   child: WPodCategoriesChildChild(category: categoryChildChild),

@@ -13,15 +13,19 @@ class StartFavorites extends FavoritesEvent {
 }
 
 class AddToFavorites extends FavoritesEvent {
-  final Result post;
-  const AddToFavorites(this.post);
+  final FavoritesEntity favoritesEntity;
+
+  const AddToFavorites(this.favoritesEntity);
+
   @override
-  List<Object> get props => [post];
+  List<Object> get props => [favoritesEntity];
 }
 
-class RemoveFromFavorites extends FavoritesEvent {
-  final Result post;
-  const RemoveFromFavorites(this.post);
+class RemoveToFavorites extends FavoritesEvent {
+  final int productId;
+
+  const RemoveToFavorites(this.productId);
+
   @override
-  List<Object> get props => [post];
+  List<Object> get props => [productId];
 }

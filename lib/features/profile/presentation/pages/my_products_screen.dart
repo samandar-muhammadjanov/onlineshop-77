@@ -32,7 +32,7 @@ class MyProductsScreen extends StatelessWidget {
         children: [
           RefreshIndicator(
             onRefresh: () async {
-              context.read<UserProductBloc>().add(GetUserProducts());
+              // context.read<UserProductBloc>().add(GetUserProducts());
             },
             child: ListView(
               physics: const BouncingScrollPhysics(),
@@ -59,35 +59,35 @@ class MyProductsScreen extends StatelessWidget {
                 const SizedBox(
                   height: 24.5,
                 ),
-                BlocBuilder<UserProductBloc, UserProductState>(
-                  builder: (context, state) {
-                    if (state is UserProductInitial) {
-                      return const WProductShimmer();
-                    } else if (state is UserProductLoading) {
-                      return const WProductShimmer();
-                    } else if (state is UserProductError) {
-                      return Text(state.error);
-                    } else if (state is UserProductLoaded) {
-                      return GridView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: state.userProducts.length,
-                        gridDelegate:
-                        SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 16,
-                          crossAxisSpacing: 12,
-                          crossAxisCount: 2,
-                          childAspectRatio: wi(0.598),
-                        ),
-                        itemBuilder: (context, index) {
-                          final item = state.userProducts[index];
-                          return WMyProductItem(item: item);
-                        },
-                      );
-                    }
-                    return const WProductShimmer();
-                  },
-                ),
+                // BlocBuilder<UserProductBloc, UserProductState>(
+                //   builder: (context, state) {
+                //     if (state is UserProductInitial) {
+                //       return const WProductShimmer();
+                //     } else if (state is UserProductLoading) {
+                //       return const WProductShimmer();
+                //     } else if (state is UserProductError) {
+                //       return Text(state.error);
+                //     } else if (state is UserProductLoaded) {
+                //       return GridView.builder(
+                //         shrinkWrap: true,
+                //         physics: const NeverScrollableScrollPhysics(),
+                //         itemCount: state.userProducts.length,
+                //         gridDelegate:
+                //         SliverGridDelegateWithFixedCrossAxisCount(
+                //           mainAxisSpacing: 16,
+                //           crossAxisSpacing: 12,
+                //           crossAxisCount: 2,
+                //           childAspectRatio: wi(0.598),
+                //         ),
+                //         itemBuilder: (context, index) {
+                //           final item = state.userProducts[index];
+                //           return WMyProductItem(item: item);
+                //         },
+                //       );
+                //     }
+                //     return const WProductShimmer();
+                //   },
+                // ),
               ],
             ),
           ),

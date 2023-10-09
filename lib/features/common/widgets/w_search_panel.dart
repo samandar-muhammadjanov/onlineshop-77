@@ -29,25 +29,25 @@ class _WSearchPanelState extends State<WSearchPanel> {
         controller: controller,
         textCapitalization: TextCapitalization.words,
         onChanged: (value) {
-          if (value.isEmpty) {
-            context.read<SearchsysBloc>().add(OnSearchInitialEvent());
-          } else {
-            context.read<SearchsysBloc>().add(OnSearchChangeEvent());
-            context
-                .read<SearchCompleteResultBloc>()
-                .add(GetCompleteResultsEvent(value));
-            // context.read<SearchedTextBloc>().add(OnSearch(value));
-          }
+          // if (value.isEmpty) {
+          //   context.read<SearchsysBloc>().add(OnSearchInitialEvent());
+          // } else {
+          //   context.read<SearchsysBloc>().add(OnSearchChangeEvent());
+          //   context
+          //       .read<SearchCompleteResultBloc>()
+          //       .add(GetCompleteResultsEvent(value));
+          //   // context.read<SearchedTextBloc>().add(OnSearch(value));
+          // }
         },
         onFieldSubmitted: (newValue) {
-          if (newValue.isNotEmpty) {
-            context.read<SearchsysBloc>().add(OnSearchResultEvent());
-            context
-                .read<SearchBloc>()
-                .add(GetSearchProductsEvent("?search=${controller.text}"));
-          } else {
-            FocusScope.of(context).unfocus();
-          }
+          // if (newValue.isNotEmpty) {
+          //   context.read<SearchsysBloc>().add(OnSearchResultEvent());
+          //   context
+          //       .read<SearchBloc>()
+          //       .add(GetSearchProductsEvent("?search=${controller.text}"));
+          // } else {
+          //   FocusScope.of(context).unfocus();
+          // }
         },
         decoration: InputDecoration(
           prefixIcon: IconButton(
@@ -59,24 +59,25 @@ class _WSearchPanelState extends State<WSearchPanel> {
               color: AppColors.hintColor,
               fontSize: 16,
               fontWeight: FontWeight.w500),
-          suffixIcon: BlocBuilder<SearchsysBloc, SearchsysState>(
-            builder: (context, state) {
-              if (state is OnSearchInitial) {
-                return const SizedBox();
-              } else {
-                return IconButton(
-                  onPressed: () {
-                    context.read<SearchsysBloc>().add(OnSearchInitialEvent());
-                    controller.clear();
-                    FocusScope.of(context).unfocus();
-                  },
-                  icon: SvgPicture.asset(
-                    AppAssets.close,
-                  ),
-                );
-              }
-            },
-          ),
+          // suffixIcon:
+          // BlocBuilder<SearchsysBloc, SearchsysState>(
+          //   builder: (context, state) {
+          //     if (state is OnSearchInitial) {
+          //       return const SizedBox();
+          //     } else {
+          //       return IconButton(
+          //         onPressed: () {
+          //           context.read<SearchsysBloc>().add(OnSearchInitialEvent());
+          //           controller.clear();
+          //           FocusScope.of(context).unfocus();
+          //         },
+          //         icon: SvgPicture.asset(
+          //           AppAssets.close,
+          //         ),
+          //       );
+          //     }
+          //   },
+          // ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: AppColors.greyColor),
             borderRadius: BorderRadius.circular(8),

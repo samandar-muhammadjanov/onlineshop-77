@@ -6,8 +6,6 @@ import 'package:onlineshop_77/core/utils/size_config.dart';
 import 'package:onlineshop_77/features/common/widgets/w_horizontal_product_item.dart';
 import 'package:onlineshop_77/features/common/widgets/w_layout.dart';
 import 'package:onlineshop_77/features/common/widgets/w_product_item.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/layout/layout_bloc.dart';
-import 'package:onlineshop_77/features/home/presentation/bloc/productByCatgory/product_by_category_bloc.dart';
 
 class WProductByCategory extends StatelessWidget {
   const WProductByCategory({
@@ -26,7 +24,7 @@ class WProductByCategory extends StatelessWidget {
     SizeConfig().init(context);
 
     return ListView(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       physics: const BouncingScrollPhysics(),
       children: [
         Row(
@@ -51,46 +49,47 @@ class WProductByCategory extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        BlocBuilder<ProductByCategoryBloc, ProductByCategoryState>(
-          builder: (context, state) {
-            if (state is ProductByCategoryLoaded) {
-              return BlocBuilder<LayoutBloc, LayoutState>(
-                builder: (context, layoutState) {
-                  if (layoutState.isVertical) {
-                    return ListView.separated(
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 10,
-                      ),
-                      shrinkWrap: true,
-                      itemCount: state.products.results.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        final item = state.products.results[index];
-                        return WHorizontalProductItem(item: item);
-                      },
-                    );
-                  }
-                  return GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: state.products.results.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 12,
-                      crossAxisCount: 2,
-                      childAspectRatio: wi(0.598),
-                    ),
-                    itemBuilder: (context, index) {
-                      final item = state.products.results[index];
-                      return WProductItem(item: item);
-                    },
-                  );
-                },
-              );
-            }
-            return const SizedBox();
-          },
-        )
+        Text("ProductByCategoryBloc"),
+        // BlocBuilder<ProductByCategoryBloc, ProductByCategoryState>(
+        //   builder: (context, state) {
+        //     if (state is ProductByCategoryLoaded) {
+        //       return BlocBuilder<LayoutBloc, LayoutState>(
+        //         builder: (context, layoutState) {
+        //           if (layoutState.isVertical) {
+        //             return ListView.separated(
+        //               separatorBuilder: (context, index) => const SizedBox(
+        //                 height: 10,
+        //               ),
+        //               shrinkWrap: true,
+        //               itemCount: state.products.results.length,
+        //               physics: const NeverScrollableScrollPhysics(),
+        //               itemBuilder: (context, index) {
+        //                 final item = state.products.results[index];
+        //                 return WHorizontalProductItem(item: item);
+        //               },
+        //             );
+        //           }
+        //           return GridView.builder(
+        //             shrinkWrap: true,
+        //             physics: const NeverScrollableScrollPhysics(),
+        //             itemCount: state.products.results.length,
+        //             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //               mainAxisSpacing: 16,
+        //               crossAxisSpacing: 12,
+        //               crossAxisCount: 2,
+        //               childAspectRatio: wi(0.598),
+        //             ),
+        //             itemBuilder: (context, index) {
+        //               final item = state.products.results[index];
+        //               return WProductItem(item: item);
+        //             },
+        //           );
+        //         },
+        //       );
+        //     }
+        //     return const SizedBox();
+        //   },
+        // )
       ],
     );
   }
